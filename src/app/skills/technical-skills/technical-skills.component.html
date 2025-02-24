@@ -1,0 +1,34 @@
+<div class="technical-skills">
+  <h2 class="section-title">Compétences Techniques</h2>
+
+  <!-- Boucle sur chaque catégorie -->
+  <div class="category-section" *ngFor="let cat of categories">
+    <h3 class="category-title">{{ cat }}</h3>
+
+    <div class="skills-grid">
+      <!-- Filtrage via la méthode getSkillsByCategory(cat) -->
+      <div class="skill-card" *ngFor="let skill of getSkillsByCategory(cat)">
+        <!-- Le bloc "circle-wrap" gère la jauge circulaire -->
+        <div class="circle-wrap">
+          <div class="circle">
+            <!-- zone half + fill -->
+            <div class="mask full" [style.transform]="'rotate(' + (skill.level * 1.8) + 'deg)'">
+              <div class="fill" [style.transform]="'rotate(' + (skill.level * 1.8) + 'deg)'"></div>
+            </div>
+            <div class="mask half">
+              <div class="fill" [style.transform]="'rotate(' + (skill.level * 1.8) + 'deg)'"></div>
+            </div>
+
+            <!-- Centre du cercle -->
+            <div class="inside-circle">
+              <img [src]="skill.logo" [alt]="skill.name" class="skill-logo" />
+              <div class="percentage">{{ skill.level }}%</div>
+            </div>
+          </div>
+        </div>
+        <!-- Nom de la compétence -->
+        <p class="skill-name">{{ skill.name }}</p>
+      </div>
+    </div>
+  </div>
+</div>

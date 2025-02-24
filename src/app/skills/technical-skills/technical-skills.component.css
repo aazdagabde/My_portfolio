@@ -1,0 +1,152 @@
+/* Conteneur principal */
+.technical-skills {
+  color: #eee;
+  margin-bottom: 2rem;
+  max-width: 1200px; /* Pour éviter d'étirer sur très grand écran */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem; /* un peu de padding */
+}
+
+/* Titre de la section */
+.section-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0f0;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Titre de chaque catégorie */
+.category-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #0ad;
+}
+
+/* Grille responsive */
+.skills-grid {
+  display: grid;
+  gap: 2rem;
+  /*  Auto-fill => remplir la ligne, minmax => width minimum 220px, maximum 1 fraction */
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  margin-bottom: 2rem;
+  /* Centre vertical/horizontal */
+  justify-items: center;
+}
+
+/* Carte contenant la jauge circulaire + le nom */
+.skill-card {
+  background-color: #222;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  text-align: center;
+  width: 220px;
+  transition: transform 0.3s ease;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Effet hover - légère mise en avant */
+.skill-card:hover {
+  transform: scale(1.05);
+}
+
+/* Jauge circulaire */
+.circle-wrap {
+  width: 150px; /* cercle plus grand qu'avant */
+  height: 150px;
+  position: relative;
+  margin: 0 auto 0.5rem; 
+}
+
+/* Arrière-plan cercle + masques */
+.circle {
+  width: 100%;
+  height: 100%;
+  background: #444;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Masques */
+.mask {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transform-origin: center right;
+}
+
+.mask.full {
+  /* style.transform via Angular */
+}
+
+.mask.half {
+  left: 50%;
+  transform-origin: center left;
+}
+
+.fill {
+  background-color: #0f0; /* Couleur de la jauge */
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  border-radius: 50%;
+  transform-origin: center center;
+}
+
+/* Centre du cercle (icône + pourcentage) */
+.inside-circle {
+  position: absolute;
+  top: 10px; 
+  left: 10px; 
+  right: 10px; 
+  bottom: 10px;
+  background: #555454;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Icônes plus grandes */
+.skill-logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain; 
+  margin-bottom: 0.3rem;
+}
+
+.percentage {
+  font-weight: bold;
+  color: #030101;
+  font-size: 1.1rem;
+}
+
+/* Nom de la compétence */
+.skill-name {
+  margin-top: 0.5rem;
+  color: #ccc;
+  font-weight: 600;
+}
+
+/* Animation fadeInUp */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

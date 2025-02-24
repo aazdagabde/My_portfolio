@@ -1,0 +1,49 @@
+<div class="projects-container">
+    <h2>Mes Projets</h2>
+  
+    <!-- Boutons de filtrage -->
+    <div class="tech-filter">
+      <button 
+        *ngFor="let tech of allTechs"
+        (click)="selectTechnology(tech)"
+        [class.selected]="tech === selectedTech"
+      >
+        {{ tech }}
+      </button>
+    </div>
+  
+    <!-- Liste des projets filtrés -->
+    <div class="cards-grid">
+      <div 
+        class="project-card" 
+        *ngFor="let project of (projects | projectFilter: selectedTech)"
+      >
+        <h3>{{ project.name }}</h3>
+        <p class="description">{{ project.description }}</p>
+  
+        <div class="tech-list">
+          <span class="tech" *ngFor="let t of project.technologies">{{ t }}</span>
+        </div>
+  
+        <ul class="features">
+          <li *ngFor="let feat of project.features">• {{ feat }}</li>
+        </ul>
+  
+        <div class="links">
+          <a *ngIf="project.repoLink" [href]="project.repoLink" target="_blank">GitHub</a>
+          <a *ngIf="project.demoLink" [href]="project.demoLink" target="_blank">Démo</a>
+        </div>
+  
+        <!-- Bouton d’ouverture de modal pour voir les captures -->
+        <button (click)="openModalFor(project)">Voir les captures</button>
+      </div>
+    </div>
+  
+    <!-- Modal (pop-up) pour les captures -->
+    <app-project-modal 
+      *ngIf="showModal"
+      [screens]="currentScreens"
+      (close)="closeModal()"
+    ></app-project-modal>
+  </div>
+  

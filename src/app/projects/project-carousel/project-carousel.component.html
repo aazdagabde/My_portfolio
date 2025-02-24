@@ -1,0 +1,16 @@
+<div class="carousel-container" *ngIf="screens.length > 0">
+    <!-- Bouton précédent -->
+    <button class="nav-btn prev" (click)="prev()">‹</button>
+  
+    <!-- Zone d'image -->
+    <div class="image-wrapper">
+      <img [src]="screens[currentIndex]" alt="Screenshot" />
+    </div>
+  
+    <!-- Bouton suivant -->
+    <button class="nav-btn next" (click)="next()">›</button>
+  </div>
+  
+  <!-- Si aucune image n'est fournie -->
+  <p *ngIf="screens.length === 0" class="no-images">Aucune image disponible</p>
+  

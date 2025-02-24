@@ -1,0 +1,37 @@
+<div class="certifications">
+  <h2 class="cert-title">Certifications</h2>
+
+  <div class="card-grid">
+    <!-- On itère sur la liste des certifs -->
+    <div class="cert-item" *ngFor="let cert of certs">
+
+      <!-- La carte flip -->
+      <div class="flip-card">
+        <div class="flip-card-inner">
+          <!-- RECTO -->
+          <div class="flip-card-front">
+            <div class="top-logo">
+              <img [src]="cert.platformLogo" alt="Platform logo" />
+            </div>
+            <h3>{{ cert.title }}</h3>
+            <ul>
+              <li *ngFor="let skill of cert.skills">{{ skill }}</li>
+            </ul>
+          </div>
+
+          <!-- VERSO -->
+          <div class="flip-card-back">
+            <img [src]="cert.image" [alt]="cert.title" />
+          </div>
+        </div>
+      </div>
+       
+      <!-- Lien à l'extérieur de la carte -->
+       <br>
+      <div class="external-verify">
+        <a [href]="cert.verifyLink" target="_blank" class="verify-link">Vérifier</a>
+      </div>
+
+    </div>
+  </div>
+</div>

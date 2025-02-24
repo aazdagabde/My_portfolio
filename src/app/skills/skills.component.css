@@ -1,0 +1,5 @@
+.skills-container {
+    @apply container mx-auto p-4; /* Tailwind classes: "container", "mx-auto", "p-4" */
+    color: #eee;
+  }
+  

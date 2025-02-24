@@ -1,0 +1,66 @@
+/* Overlay en plein écran */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-content {
+    background-color: #111;
+    position: relative;
+    padding: 1rem;
+    border-radius: 8px;
+    max-width: 80%;
+    max-height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.7rem;
+    font-size: 2rem;
+    background: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Carousel */
+  .carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .nav-btn {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 1rem;
+  }
+  
+  .image-wrapper {
+    max-width: 600px;
+    max-height: 400px;
+    overflow: hidden;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+  }
+  

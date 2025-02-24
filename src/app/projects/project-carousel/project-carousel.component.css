@@ -1,0 +1,50 @@
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    background-color: #111;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  
+  /* Boutons de navigation */
+  .nav-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.2s;
+  }
+  
+  .nav-btn:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Zone d'image */
+  .image-wrapper {
+    max-width: 600px;
+    max-height: 400px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* Texte si aucune image */
+  .no-images {
+    color: #ccc;
+    text-align: center;
+    font-style: italic;
+  }
+  

@@ -1,0 +1,15 @@
+<div class="soft-skills">
+    <h2 class="soft-skills-title">Soft Skills</h2>
+  
+    <!-- Simple boucle *ngFor -->
+    <!-- Aucune arrow function dans le template -->
+    <div class="soft-skill-item" *ngFor="let skill of softSkills">
+      <div class="skill-label">{{ skill.name }}</div>
+      <div class="bar-container">
+        <!-- Largeur de la barre = skill.level % -->
+        <div class="bar-fill" [style.width.%]="skill.level"></div>
+      </div>
+      <div class="skill-percentage">{{ skill.level }}%</div>
+    </div>
+  </div>
+  

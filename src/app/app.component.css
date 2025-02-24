@@ -1,0 +1,42 @@
+/* Style général du layout */
+.header {
+    background-color: #0d0d0d;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  .nav a:hover {
+    color: #0f0;
+  }
+  
+  .main-content {
+    min-height: calc(100vh - 120px);
+    background: #1a1a1a;
+    color: #fff;
+    padding: 2rem;
+  }
+  
+  .footer {
+    background: #111;
+    text-align: center;
+    padding: 1rem;
+    color: #777;
+  }
+  

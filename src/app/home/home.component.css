@@ -1,0 +1,65 @@
+.home-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .banner {
+    text-align: center;
+    margin-top: 2rem;
+    animation: fadeIn 1s ease-in;
+  }
+  
+  .text-animate {
+    font-size: 1.4rem;
+    color: #0f0;
+    margin-bottom: 1rem;
+    min-height: 80px; /* Pour éviter que la zone saute pendant le typing */
+  }
+  
+  .banner-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #0f0;
+    margin: 1rem 0;
+    animation: popIn 0.8s ease forwards;
+  }
+  
+  .intro {
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+    line-height: 1.6;
+  }
+  
+  .cta-button {
+    background-color: #0f0;
+    color: #111;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  .cta-button:hover {
+    background-color: #0c0;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  
+  @keyframes popIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .tagline {
+    font-size: 1.1rem;
+    color: #fff;
+  }
+  
