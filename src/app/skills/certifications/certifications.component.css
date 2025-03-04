@@ -33,8 +33,8 @@
 
 /* Carte flip : format paysage */
 .flip-card {
-  width: 400px;
-  height: 250px;
+  width: 500px;
+  height: 350px;
   perspective: 1000px;
   margin-bottom: 0.5rem;
 }
@@ -76,7 +76,7 @@
 
 /* Logo en haut */
 .top-logo img {
-  width: 80px;
+  width: 50px;
   height: auto;
   object-fit: contain;
   margin-bottom: 0.3rem;

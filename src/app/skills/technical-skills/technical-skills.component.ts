@@ -28,12 +28,12 @@ export class TechnicalSkillsComponent implements OnInit {
     { category: 'Langages de programmation', name: 'R',           logo: 'assets/logos/r.png',        level: 60 },
 
     { category: 'Frameworks',               name: 'Angular',      logo: 'assets/logos/angular.png',  level: 75 },
-    { category: 'Frameworks',               name: 'Spring Boot',  logo: 'assets/logos/spring.png',   level: 70 },
+    { category: 'Frameworks',               name: 'Spring Boot',  logo: 'assets/logos/springboot.png',   level: 70 },
     { category: 'Frameworks',               name: 'Django',       logo: 'assets/logos/django.png',   level: 65 },
-    { category: 'Frameworks',               name: 'Laravel',      logo: 'assets/logos/laravel.png',  level: 70 },
+    { category: 'Frameworks',               name: 'Laravel',      logo: 'assets/logos/laravel.svg',  level: 70 },
     { category: 'Frameworks',               name: 'React',        logo: 'assets/logos/react.png',    level: 65 },
-    { category: 'Frameworks',               name: 'JEE',          logo: 'assets/logos/jee.png',      level: 60 },
-    { category: 'Frameworks',               name: 'Bootstrap',    logo: 'assets/logos/bootstrap.png',level: 70 },
+    { category: 'Frameworks',               name: 'JEE',          logo: 'assets/logos/jee.svg',      level: 60 },
+    { category: 'Frameworks',               name: 'Bootstrap',    logo: 'assets/logos/boot.png',level: 70 },
 
     { category: 'Bases de données',         name: 'MySQL',        logo: 'assets/logos/mysql.png',    level: 60 },
     { category: 'Bases de données',         name: 'Oracle',       logo: 'assets/logos/oracle.png',   level: 55 },
