@@ -1,5 +1,195 @@
+
+/* ----------------------------------
+   VARIABLES CSS (Optionnel)
+   Pour gérer plus facilement 
+   tes couleurs, polices, etc.
+------------------------------------- */
+:root {
+  --primary-color: #0f0;      /* Couleur principale (vert) */
+  --background-color: #111;   /* Fond général */
+  --card-bg-color: #222;      /* Fond des cartes */
+  --text-color: #eee;         /* Couleur de texte */
+  --secondary-text-color: #ccc;
+  --accent-color: #0f0;       /* Couleur accent (ex. survol) */
+  --font-family: "Roboto", sans-serif; /* Ex. Google Fonts */
+}
+
+/* ----------------------------------
+   RESET / GLOBAL
+------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  line-height: 1.5;
+}
+
+/* ----------------------------------
+   CONTAINER GÉNÉRAL
+------------------------------------- */
 .projects-container {
-    max-width: 1200px;
+  /* Retire ou augmente le max-width pour ne pas 
+     être limité dans le nombre de colonnes */
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Titre principal */
+.projects-container h2 {
+  text-align: center;
+  color: var(--accent-color);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+/* ----------------------------------
+   BOUTONS DE FILTRAGE
+------------------------------------- */
+.tech-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.tech-filter button {
+  background-color: #333;
+  color: var(--text-color);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.tech-filter button:hover {
+  background-color: var(--accent-color);
+  color: #111;
+  transform: translateY(-2px);
+}
+
+.tech-filter button.selected {
+  background-color: var(--accent-color);
+  color: #111;
+}
+
+/* ----------------------------------
+   GRILLE DE CARTES
+------------------------------------- */
+.cards-grid {
+  display: grid;
+  gap: 1.5rem;
+  /* On peut réduire minmax à 250px pour faire rentrer plus de cartes */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* Ajoute un peu de transition pour l'apparition des cartes si besoin */
+}
+
+.project-card {
+  background-color: var(--card-bg-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Ombre légère */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Titre du projet */
+.project-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+}
+
+/* Description */
+.description {
+  margin: 0.5rem 0;
+  color: var(--secondary-text-color);
+  line-height: 1.4;
+}
+
+/* Liste de techno */
+.tech-list {
+  margin-bottom: 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tech {
+  background-color: var(--accent-color);
+  color: #111;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+/* Liste de features */
+.features {
+  margin: 0.5rem 0 1rem 0;
+  padding-left: 1.2rem;
+  color: var(--secondary-text-color);
+}
+
+.features li {
+  margin-bottom: 0.3rem;
+}
+
+/* Liens */
+.links {
+  margin-top: auto;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.links a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.links a:hover {
+  color: #fff;
+}
+
+/* Bouton voir les captures */
+.project-card button {
+  align-self: flex-start;
+  background-color: var(--accent-color);
+  color: #111;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-card button:hover {
+  background-color: #00c400;
+  transform: translateY(-2px);
+}
+
+.projects-container {
+    max-width: 1300px;
     margin: 0 auto;
     color: #eee;
     padding: 1rem;

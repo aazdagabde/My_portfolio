@@ -1,16 +1,26 @@
 <div class="carousel-container" *ngIf="screens.length > 0">
-    <!-- Bouton précédent -->
-    <button class="nav-btn prev" (click)="prev()">‹</button>
-  
-    <!-- Zone d'image -->
-    <div class="image-wrapper">
-      <img [src]="screens[currentIndex]" alt="Screenshot" />
-    </div>
-  
-    <!-- Bouton suivant -->
-    <button class="nav-btn next" (click)="next()">›</button>
+  <button class="nav-btn prev" (click)="prev()">‹</button>
+
+  <div class="image-wrapper" [class.zoomed]="zoomed">
+    <img 
+      [src]="screens[currentIndex]" 
+      alt="Screenshot" 
+      class="carousel-image"
+    />
+    <!-- BOUTON de ZOOM -->
+    <button class="zoom-btn" (click)="toggleZoom()">
+      <!-- On affiche une icône différente selon l'état du zoom -->
+      <span *ngIf="!zoomed">🔍</span>
+      <span *ngIf="zoomed">✕</span>
+    </button>
   </div>
-  
-  <!-- Si aucune image n'est fournie -->
-  <p *ngIf="screens.length === 0" class="no-images">Aucune image disponible</p>
-  
+
+  <button class="nav-btn next" (click)="next()">›</button>
+
+  <!-- Indicateur de position -->
+  <div class="carousel-indicator">
+    {{ currentIndex + 1 }} / {{ screens.length }}
+  </div>
+</div>
+
+<p *ngIf="screens.length === 0" class="no-images">Aucune image disponible</p>

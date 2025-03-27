@@ -1,31 +1,30 @@
 import { Component, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
   selector: 'app-project-carousel',
   templateUrl: './project-carousel.component.html',
-  styleUrls: ['./project-carousel.component.css'],
-  imports: [CommonModule],
+  styleUrls: ['./project-carousel.component.css']
 })
 export class ProjectCarouselComponent {
-  // Liste des images/captures à afficher
   @Input() screens: string[] = [];
-
   currentIndex = 0;
+  zoomed = false; // État du zoom
 
-  // Passe à l’image suivante
-  next() {
+  prev(): void {
     if (this.screens.length > 0) {
-      this.currentIndex = (this.currentIndex + 1) % this.screens.length;
+      this.currentIndex = (this.currentIndex - 1 + this.screens.length) % this.screens.length;
+      this.zoomed = false; // on réinitialise le zoom quand on change d'image
     }
   }
 
-  // Passe à l’image précédente
-  prev() {
+  next(): void {
     if (this.screens.length > 0) {
-      this.currentIndex =
-        (this.currentIndex - 1 + this.screens.length) % this.screens.length;
+      this.currentIndex = (this.currentIndex + 1) % this.screens.length;
+      this.zoomed = false; // on réinitialise le zoom quand on change d'image
     }
+  }
+
+  toggleZoom(): void {
+    this.zoomed = !this.zoomed;
   }
 }

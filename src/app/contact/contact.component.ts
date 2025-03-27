@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  standalone: true,
   selector: 'app-contact',
+  standalone: true,
+  imports: [FormsModule, HttpClientModule], // 👈 HttpClientModule à ajouter obligatoirement
   templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css'],
-  imports: [CommonModule, FormsModule]
+  styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
   formData = {
@@ -17,9 +17,19 @@ export class ContactComponent {
     message: ''
   };
 
+  constructor(private http: HttpClient) {}
+
   onSubmit() {
-    console.log('Form data:', this.formData);
-    alert('Votre message a été envoyé !');
-    // Ici, tu pourrais envoyer la data vers un backend ou un service externe
+    this.http.post('http://localhost:8080/api/contact/send', this.formData, { responseType: 'text' })
+      .subscribe({
+        next: (response) => {
+          alert(response);
+          this.formData = { name: '', email: '', subject: '', message: '' };
+        },
+        error: (error) => {
+          console.error('Erreur :', error);
+          alert('Erreur lors de l\'envoi du message');
+        }
+      });
   }
 }
