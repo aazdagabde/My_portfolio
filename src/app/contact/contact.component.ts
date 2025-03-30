@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -20,7 +21,8 @@ export class ContactComponent {
   constructor(private http: HttpClient) {}
 
   onSubmit() {
-    this.http.post('http://localhost:8080/api/contact/send', this.formData, { responseType: 'text' })
+    const urlapi = environment.url + '/api/contact/send'; // Utilisation de l'URL de l'environnement
+    this.http.post(urlapi, this.formData, { responseType: 'text' })
       .subscribe({
         next: (response) => {
           alert(response);
