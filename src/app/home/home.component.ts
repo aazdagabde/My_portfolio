@@ -1,32 +1,49 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import Typed from 'typed.js';
 
 @Component({
-  standalone: true,
   selector: 'app-home',
+  standalone: true,
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  imports: [CommonModule]
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
+  @ViewChild('typedName', { static: true }) typedName!: ElementRef;
+  @ViewChild('typedSub', { static: true }) typedSub!: ElementRef;
 
-  @ViewChild('typedElement', { static: true }) typedElement!: ElementRef;
-
-  ngOnInit(): void {
-    const options = {
-      strings: [
-        'Abdellah Aazdag<br>Développeur Full Stack Java/Angular<br>' +
-        '<span class="tagline">Passionné par l’innovation technologique et le développement web</span>'
-      ],
-      typeSpeed: 30,
-      backSpeed: 20,
+  ngAfterViewInit() {
+    // Effet typewriter pour le nom/titre
+    new Typed(this.typedName.nativeElement, {
+      strings: ['Abdellah Aazdag', 'Développeur Full Stack'],
+      typeSpeed: 70,
+      backSpeed: 50,
+      loop: false,
       showCursor: true,
       cursorChar: '|',
-      loop: false
-    };
-    if (typeof window !== 'undefined') {
-      new Typed(this.typedElement.nativeElement, options);
-    }
+      smartBackspace: true,
+      onComplete: () => {
+        // Supprime le curseur après la saisie
+        const cursor = this.typedName.nativeElement.nextElementSibling;
+        if (cursor && cursor.classList.contains('typed-cursor')) {
+          cursor.remove();
+        }
+        // Lance l'effet typewriter pour le texte secondaire
+        new Typed(this.typedSub.nativeElement, {
+          strings: [
+            'Web & Mobile Development',
+            'Backend & API Design',
+            'Project Management',
+            'IT Enthusiast',
+            'Problem Solver'
+          ],
+          typeSpeed: 60,
+          backSpeed: 40,
+          loop: true,
+          backDelay: 2000,
+          showCursor: true,
+          cursorChar: '|'
+        });
+      }
+    });
   }
 }

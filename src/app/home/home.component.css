@@ -1,65 +1,189 @@
+/* Conteneur principal */
 .home-container {
-    display: flex;
-    align-items: center;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Wrapper pour les deux colonnes */
+.content-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  animation: fadeIn 1s ease-in;
+}
+
+/* Section gauche */
+.left-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* Typewriter pour le nom et titre */
+.typed-name {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: #0f0;
+  margin: 0;
+  min-height: 70px;
+}
+
+/* Typewriter pour le texte secondaire */
+.typed-sub {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: rgb(228, 235, 25);
+  margin-top: 0.5rem;
+  min-height: 50px;
+}
+
+/* Slogan */
+.slogan {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 1rem 0;
+  color: #ddd;
+}
+
+/* Description du profil */
+.profile-description {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  opacity: 0; 
+  animation: fadeText 1s forwards 1s;
+}
+
+/* Boutons et liens */
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.cta-button {
+  background-color: #0f0;
+  color: #111;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+  background-color: #0c0;
+}
+
+/* Section droite : images hexagonales */
+.right-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.hex-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Forme hexagonale (6 côtés) */
+.hex-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  clip-path: polygon(
+    25% 0%,  
+    75% 0%,  
+    100% 50%,
+    75% 100%,
+    25% 100%,
+    0% 50%
+  );
+  border: 3px solid #0f0;
+  transition: transform 0.3s ease;
+}
+
+.hex-image:hover {
+  transform: scale(1.05);
+}
+
+/* Hexagone plus grand */
+.hex-image-big {
+  width: 300px;
+  height: 300px;
+}
+
+/* Hexagones moyens */
+.hex-image-medium {
+  width: 200px;
+  height: 200px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeText {
+  from {
+    opacity: 0; 
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content-wrapper {
     flex-direction: column;
-  }
-  
-  .banner {
     text-align: center;
-    margin-top: 2rem;
-    animation: fadeIn 1s ease-in;
   }
-  
-  .text-animate {
+  .left-section, .right-section {
+    width: 100%;
+  }
+  .typed-name {
+    font-size: 2rem;
+  }
+  .typed-sub {
     font-size: 1.4rem;
-    color: #0f0;
-    margin-bottom: 1rem;
-    min-height: 80px; /* Pour éviter que la zone saute pendant le typing */
   }
-  
-  .banner-image {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 3px solid #0f0;
-    margin: 1rem 0;
-    animation: popIn 0.8s ease forwards;
+  .profile-description {
+    font-size: 1rem;
   }
-  
-  .intro {
-    max-width: 600px;
-    margin: 0 auto 1.5rem auto;
-    line-height: 1.6;
+  .hex-images {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
-  
-  .cta-button {
-    background-color: #0f0;
-    color: #111;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+  .hex-image-big, .hex-image-medium {
+    width: 150px;
+    height: 150px;
   }
-  .cta-button:hover {
-    background-color: #0c0;
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px);}
-    to { opacity: 1; transform: translateY(0);}
-  }
-  
-  @keyframes popIn {
-    0% { transform: scale(0.3); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
-  
-  .tagline {
-    font-size: 1.1rem;
-    color: #fff;
-  }
-  
+}

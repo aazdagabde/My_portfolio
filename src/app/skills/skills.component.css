@@ -1,5 +1,11 @@
 .skills-container {
-    @apply container mx-auto p-4; /* Tailwind classes: "container", "mx-auto", "p-4" */
-    color: #eee;
-  }
-  
+  color: #eee;
+  padding: 2rem;
+  background-color: rgba(29, 29, 29, 0.8);
+  border-radius: 10px;
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 20px rgba(34, 114, 255, 0.2);
+  font-family: 'Courier New', monospace;
+  max-width: 1200px;
+  margin: 0 auto;
+}

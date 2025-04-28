@@ -4,8 +4,8 @@
 #include <ArduinoJson.h>
 
 #define DHTTYPE DHT11
-const char* ssid = "Redmi Note 12";
-const char* password = "12344321";
+const char* ssid = "esp32";
+const char* password = "12345678";
 const char* serverName = "http://192.168.197.236:8000/api/post";
 //const char* serverName = "http://monitoringtemperatureandhumi.pythonanywhere.com/api/temperaturehumidity";
 #define dht_dpin 4

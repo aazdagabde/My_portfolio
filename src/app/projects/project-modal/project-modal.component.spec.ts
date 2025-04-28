@@ -13,6 +13,9 @@ export class ProjectModalComponent {
   @Output() close = new EventEmitter<void>();
 
   currentIndex = 0;
+showControls: any;
+toggleZoom: any;
+zoomed: any;
 
   next() {
     this.currentIndex = (this.currentIndex + 1) % this.screens.length;

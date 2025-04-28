@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '../services/project.service';
 
@@ -18,3 +18,4 @@ export class ProjectsComponent implements OnInit {
     this.projects = this.projectService.getProjects();
   }
 }
+*/

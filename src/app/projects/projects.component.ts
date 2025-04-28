@@ -100,7 +100,7 @@ export class ProjectsComponent {
         'Logique de jeu en JavaScript pour un rendu fluide et réactif'
       ],
       repoLink: '',
-      demoLink: '',
+      demoLink: 'https://aazdag-tec-tac-toe.netlify.app/',
       screenshots: [
         'assets/screens/tic/tic1.png',
         'assets/screens/tic/tic2.png',
@@ -120,7 +120,7 @@ export class ProjectsComponent {
         'Entraînement d’un modèle ML pour détecter les anomalies des mesures climatiques'
       ],
       repoLink: 'https://github.com/aazdagabde/MSO_ITIRC25',
-      demoLink: '',
+      demoLink: 'https://mso.pythonanywhere.com/',
       screenshots: [
         'assets/screens/climat/1.png',
         'assets/screens/climat/a1.png',
@@ -131,10 +131,45 @@ export class ProjectsComponent {
         'assets/screens/climat/a6.png',
         'assets/screens/climat/a7.png',
         'assets/screens/climat/a8.png',
+        'assets/screens/climat/a9.png',
+        'assets/screens/climat/a10.png',
+        'assets/screens/climat/a11.png',
+        'assets/screens/climat/a12.png',
+        'assets/screens/climat/a13.png',
+        'assets/screens/climat/a14.png',
+        'assets/screens/climat/a15.png'
 
         
       ]
+
+
+    },
+    {
+      name: 'Portfolio Développeur Web',
+      description: 'Création d’un portfolio dynamique pour présenter mes projets, formations et expériences professionnelles.',
+      technologies: ['Angular', 'Spring Boot', 'TypeScript', 'Java', 'HTML', 'CSS'],
+      features: [
+        'Interface moderne, responsive et animée avec Angular',
+        'Backend RESTful sécurisé avec Spring Boot',
+        'Système d’authentification et gestion des contenus (projets, formations, certificats, etc.)',
+        'Intégration d’un panneau d’administration pour modification en temps réel',
+        'Hébergement via Netlify et API déployée sur Render'
+      ],
+      repoLink: '', 
+      demoLink: 'https://aazdagabdepf.netlify.app/projects',
+      screenshots: [
+        'assets/portfolio/im1.png',
+        'assets/portfolio/im2.png',
+        'assets/portfolio/im3.png',
+        'assets/portfolio/im4.png',
+        'assets/portfolio/im5.png',
+        'assets/portfolio/im6.png',
+        'assets/portfolio/im7.png',
+        'assets/portfolio/im8.png'
+       
+      ]
     }
+    
   ];
 
   // Contrôle de la modal

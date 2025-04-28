@@ -1,6 +1,10 @@
 <header class="header">
   <nav class="nav">
-    <ul>
+    <!-- Bouton Toggle pour afficher/masquer le menu -->
+    <button class="toggle-btn" (click)="toggleNav()" aria-label="Toggle navigation">
+      ☰
+    </button>
+    <ul [class.open]="isNavOpen">
       <li><a routerLink="/home">Accueil</a></li>
       <li><a routerLink="/about">À propos</a></li>
       <li><a routerLink="/skills">Compétences</a></li>
@@ -11,10 +15,16 @@
   </nav>
 </header>
 
-<main class="main-content">
+<main class="main-content" [@fadeIn]>
   <router-outlet></router-outlet>
 </main>
 
 <footer class="footer">
-  <p>© 2025 Abdellah Aazdag - Tous droits réservés.</p>
+  <p>© 2025 Abdellah Aazdag - Tous droits réservés.
+
+<br>
+Version 1.0.0 - Développé avec Angular et Bootstrap 5.3.0 et spring boot 3.2.0. </p>
+  <p>Ce site est un portfolio personnel d' ABDELLAH AAZDAG et n'est pas destiné à un usage commercial.</p>
+  <p>Pour toute question ou demande d'information, n'hésitez pas à me contacter via le formulaire de contact.</p>
+  
 </footer>

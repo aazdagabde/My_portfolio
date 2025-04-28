@@ -1,26 +1,42 @@
-<div class="carousel-container" *ngIf="screens.length > 0">
-  <button class="nav-btn prev" (click)="prev()">‹</button>
-
-  <div class="image-wrapper" [class.zoomed]="zoomed">
-    <img 
-      [src]="screens[currentIndex]" 
-      alt="Screenshot" 
-      class="carousel-image"
-    />
-    <!-- BOUTON de ZOOM -->
-    <button class="zoom-btn" (click)="toggleZoom()">
-      <!-- On affiche une icône différente selon l'état du zoom -->
-      <span *ngIf="!zoomed">🔍</span>
-      <span *ngIf="zoomed">✕</span>
-    </button>
+<div class="carousel-container" 
+     (mouseenter)="showControlsTemporarily()" 
+     (mouseleave)="resetControlsTimer()">
+     
+  <!-- Image principale -->
+  <div class="image-viewport" (click)="toggleZoom()">
+    <div class="image-wrapper" [class.zoomed]="zoomed">
+      <img [src]="screens[currentIndex]" 
+           alt="Project screenshot"
+           class="carousel-image">
+    </div>
   </div>
 
-  <button class="nav-btn next" (click)="next()">›</button>
+  <!-- Contrôles -->
+  <div class="controls" [class.visible]="showControls">
+    <button class="control-btn prev-btn" (click)="prev(); $event.stopPropagation()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    
+    <button class="control-btn next-btn" (click)="next(); $event.stopPropagation()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
 
-  <!-- Indicateur de position -->
-  <div class="carousel-indicator">
-    {{ currentIndex + 1 }} / {{ screens.length }}
+    <button class="control-btn zoom-btn" (click)="toggleZoom(); $event.stopPropagation()">
+      <i class="fas" [class.fa-search-plus]="!zoomed" [class.fa-search-minus]="zoomed"></i>
+    </button>
+
+    <div class="carousel-indicator">
+      {{currentIndex + 1}}/{{screens.length}}
+    </div>
+  </div>
+
+  <!-- Miniatures -->
+  <div class="thumbnails" *ngIf="showControls && screens.length > 1">
+    <div *ngFor="let screen of screens; let i = index"
+         class="thumbnail" 
+         [class.active]="i === currentIndex"
+         (click)="currentIndex = i; $event.stopPropagation()">
+      <img [src]="screen" alt="Thumbnail">
+    </div>
   </div>
 </div>
-
-<p *ngIf="screens.length === 0" class="no-images">Aucune image disponible</p>

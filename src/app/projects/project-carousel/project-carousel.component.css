@@ -1,91 +1,158 @@
+:root {
+  --primary: #2272FF;
+  --primary-dark: #1a5acc;
+  --dark: #1D1D1D;
+  --darker: #121212;
+  --light: #ffffff;
+  --gray: #333;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --terminal-font: 'Courier New', monospace;
+}
+
 .carousel-container {
   position: relative;
-  background-color: #111;
-  border-radius: 12px;
-  padding: 1.5rem;
+  width: 100%;
+  height: 100%;
+  background-color: var(--darker);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(34, 114, 255, 0.3);
+  border: 1px solid var(--primary);
+}
+
+/* Vue image */
+.image-viewport {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-
-/* Boutons de navigation (flèches) */
-.nav-btn {
-  background-color: rgba(255,255,255,0.1);
-  border: none;
-  color: #0f0;
-  font-size: 2rem;
+  overflow: hidden;
   cursor: pointer;
-  padding: 0.3rem 0.7rem;
-  border-radius: 50%;
-  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.nav-btn:hover {
-  transform: scale(1.2);
-  background-color: rgba(0,255,0,0.2);
-}
-
-/* Conteneur de l’image */
 .image-wrapper {
-  position: relative;
-  max-width: 700px;
-  max-height: 500px;
-  overflow: auto;
-  border-radius: 8px;
-  border: 1px solid #444;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Image */
+.image-wrapper.zoomed {
+  transform: scale(2);
+  cursor: zoom-out;
+}
+
 .carousel-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 1px solid var(--primary);
 }
 
-/* Quand on est en mode zoom */
-.image-wrapper.zoomed .carousel-image {
-  transform: scale(1.8);
-}
-
-/* Bouton de zoom (icône loupe ou close) */
-.zoom-btn {
+/* Contrôles */
+.controls {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  background-color: rgba(255,255,255,0.1);
-  color: #fff;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  opacity: 0;
+  transition: var(--transition);
+  pointer-events: none;
+}
+
+.controls.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.control-btn {
+  background-color: rgba(0, 0, 0, 0.7);
   border: none;
-  font-size: 1.4rem;
-  cursor: pointer;
-  padding: 0.4rem 0.7rem;
+  color: var(--light);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  pointer-events: all;
+  border: 1px solid var(--primary);
 }
 
-.zoom-btn:hover {
-  transform: scale(1.2);
-  background-color: rgba(255,255,255,0.2);
+.control-btn:hover {
+  background-color: var(--primary);
+  color: var(--darker);
+  transform: scale(1.1);
 }
 
-/* Message si aucune image */
-.no-images {
-  color: #ccc;
-  text-align: center;
-  font-style: italic;
-  margin-top: 1rem;
-}
-
-/* Indicateur du carousel (ex: 1/3) */
+/* Indicateur */
 .carousel-indicator {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background-color: rgba(0,0,0,0.6);
-  color: #0f0;
-  padding: 0.3rem 0.6rem;
-  border-radius: 8px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--primary);
+  padding: 5px 15px;
+  border-radius: 20px;
   font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid var(--primary);
+  letter-spacing: 1px;
+}
+
+/* Miniatures */
+.thumbnails {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  overflow-x: auto;
+}
+
+.thumbnail {
+  width: 60px;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.thumbnail:hover, .thumbnail.active {
+  opacity: 1;
+  border-color: var(--primary);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .control-btn {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .thumbnail {
+    width: 50px;
+    height: 35px;
+  }
 }

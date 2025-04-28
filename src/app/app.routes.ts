@@ -8,6 +8,7 @@ import { ExperiencesComponent } from './experiences/experiences.component';
 import {SkillsComponent} from './skills/skills.component';
 
 
+
 export const appRoutes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },

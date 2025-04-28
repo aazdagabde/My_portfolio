@@ -1,16 +1,65 @@
 <div class="home-container">
-    <section class="banner">
-      <div class="text-animate">
-        <!-- Typed.js container -->
-        <span #typedElement class="typed-text"></span>
-      </div>
-      <img src="assets/images/mon_image.jpg" alt="Abdellah Aazdag" class="banner-image" />
-      <p class="intro">
-        Actuellement en 2e année du cycle ingénieur ITIRC (ENSAO),
-        je recherche des opportunités pour mettre en pratique mes
-        compétences Full Stack et participer à des projets innovants.
+  <div class="content-wrapper">
+    <!-- SECTION GAUCHE : Texte animé, slogan, description et liens -->
+    <div class="left-section">
+      <!-- Texte tapé pour le nom et le titre -->
+      <h1 class="typed-name" #typedName></h1>
+      
+      <!-- Texte secondaire animé en boucle -->
+      <p class="typed-sub" #typedSub></p>
+      
+      <!-- Slogan -->
+      <p class="slogan">Créer, Innover, Transformer</p>
+      
+      <!-- Description / Profil -->
+      <p class="profile-description">
+        Élève ingénieur à l’ENSA Oujda, passionné par le développement web Full Stack.<br>
+        Actuellement à la recherche d’un stage de fin d’année (Juillet à Août 2025),<br>
+        je souhaite mettre mes compétences au service d’une entreprise dynamique et innovante.
       </p>
-      <button routerLink="/about" class="cta-button">En savoir plus</button>
-    </section>
+      
+      <!-- Boutons pour télécharger l'attestation et le CV -->
+      <div class="cta-buttons">
+        <a 
+          href="assets/pdf/attestation.pdf" 
+          download 
+          class="cta-button download-cv"
+          aria-label="Télécharger l'attestation PFA"
+        >
+          Attestation PFA
+        </a>
+        <a 
+          href="assets/pdf/AAZDAG_ABDELLAH_2025.pdf" 
+          download 
+          class="cta-button download-cv"
+          aria-label="Télécharger le CV"
+        >
+          CV - version 2/4/2025
+        </a>
+      </div>
+    </div>
+    
+    <!-- SECTION DROITE : Images hexagonales -->
+    <div class="right-section">
+      <div class="hex-images">
+        <!-- Hexagone Grand -->
+        <img 
+          src="assets/myph/im1.jpg" 
+          alt="Évènement marquant"
+          class="hex-image hex-image-big"
+        />
+        <!-- Hexagones Moyens -->
+        <img 
+          src="assets/myph/im2.jpg" 
+          alt="Compétences"
+          class="hex-image hex-image-medium"
+        />
+        <img 
+          src="assets/myph/img3.jpg" 
+          alt="Passion pour la Tech"
+          class="hex-image hex-image-medium"
+        />
+      </div>
+    </div>
   </div>
-  
+</div>
