@@ -9,6 +9,9 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class ProjectModalComponent {
+selectImage(_t20: number) {
+throw new Error('Method not implemented.');
+}
   @Input() screens: string[] = [];
   @Output() close = new EventEmitter<void>();
 

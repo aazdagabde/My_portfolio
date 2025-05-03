@@ -21,7 +21,7 @@ export class ContactComponent {
   constructor(private http: HttpClient) {}
 
   onSubmit() {
-    const urlapi = 'https://aazdagpf.onrender.com'+ '/api/contact/send'; // Utilisation de l'URL de l'environnement
+    const urlapi = ''+ '/api/contact/send'; // Utilisation de l'URL de l'environnement
     this.http.post(urlapi, this.formData, { responseType: 'text' })
       .subscribe({
         next: (response) => {

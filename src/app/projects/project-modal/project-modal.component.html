@@ -1,15 +1,32 @@
-<div class="modal-overlay">
-  <div class="modal-content">
-    <button class="close-btn" (click)="onClose()">×</button>
+<div class="modal-overlay" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="onClose()">
+      <i class="fas fa-times"></i>
+    </button>
 
     <div class="carousel" *ngIf="screens.length > 0">
-      <button class="nav-btn" (click)="prev()">‹</button>
+      <button class="nav-btn prev-btn" (click)="prev(); $event.stopPropagation()">
+        <i class="fas fa-chevron-left"></i>
+      </button>
 
       <div class="image-wrapper">
-        <img [src]="screens[currentIndex]" alt="Screenshot" />
+        <img [src]="screens[currentIndex]" alt="Project screenshot" />
       </div>
 
-      <button class="nav-btn" (click)="next()">›</button>
+      <button class="nav-btn next-btn" (click)="next(); $event.stopPropagation()">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <div class="thumbnail-container" *ngIf="screens.length > 1">
+      <div 
+        *ngFor="let screen of screens; let i = index"
+        class="thumbnail" 
+        [class.active]="i === currentIndex"
+        (click)="selectImage(i); $event.stopPropagation()"
+      >
+        <img [src]="screen" alt="Thumbnail">
+      </div>
     </div>
   </div>
 </div>

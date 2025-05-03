@@ -1,66 +1,157 @@
-/* Overlay en plein écran */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.8);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background-color: #1E1E1E;
+  position: relative;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90vh;
+  width: 900px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #4CAF50;
+  transform: rotate(90deg);
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 70vh;
+}
+
+.image-wrapper {
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.image-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #4CAF50;
+}
+
+.prev-btn {
+  left: 20px;
+}
+
+.next-btn {
+  right: 20px;
+}
+
+.thumbnail-container {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  overflow-x: auto;
+  background: #1E1E1E;
+  border-top: 1px solid #333;
+}
+
+.thumbnail {
+  width: 80px;
+  height: 60px;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  flex-shrink: 0;
+}
+
+.thumbnail:hover {
+  opacity: 1;
+  border-color: #4CAF50;
+}
+
+.thumbnail.active {
+  opacity: 1;
+  border-color: #4CAF50;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
   .modal-content {
-    background-color: #111;
-    position: relative;
-    padding: 1rem;
-    border-radius: 8px;
-    max-width: 80%;
-    max-height: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 95%;
+    max-height: 95vh;
   }
   
-  .close-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.7rem;
-    font-size: 2rem;
-    background: transparent;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Carousel */
   .carousel {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 60vh;
   }
   
-  .nav-btn {
-    background: transparent;
-    border: none;
-    font-size: 2rem;
-    color: #fff;
-    cursor: pointer;
-    margin: 0 1rem;
+  .thumbnail {
+    width: 60px;
+    height: 45px;
   }
-  
-  .image-wrapper {
-    max-width: 600px;
-    max-height: 400px;
-    overflow: hidden;
-  }
-  
-  .image-wrapper img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-    object-fit: cover;
-  }
-  
+}

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,31 +9,38 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
 })
 export class ProjectModalComponent {
-  // <-- Propriété Input : reçoit la liste d’images
   @Input() screens: string[] = [];
-
-  // <-- On émet un event pour fermer la modal
   @Output() close = new EventEmitter<void>();
-
-  // <-- Index de l’image courante
   currentIndex = 0;
 
-  // Méthode pour aller à l’image suivante
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.onClose();
+    } else if (event.key === 'ArrowRight') {
+      this.next();
+    } else if (event.key === 'ArrowLeft') {
+      this.prev();
+    }
+  }
+
   next() {
     if (this.screens.length > 0) {
       this.currentIndex = (this.currentIndex + 1) % this.screens.length;
     }
   }
 
-  // Méthode pour aller à l’image précédente
   prev() {
     if (this.screens.length > 0) {
       this.currentIndex = (this.currentIndex - 1 + this.screens.length) % this.screens.length;
     }
   }
 
-  // Fermer la modal
   onClose() {
     this.close.emit();
+  }
+
+  selectImage(index: number) {
+    this.currentIndex = index;
   }
 }

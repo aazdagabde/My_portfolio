@@ -3,16 +3,17 @@ import { CommonModule } from '@angular/common';
 import { Project } from './project.model';
 import { ProjectFilterPipe } from './project-filter.pipe';
 import { ProjectModalComponent } from './project-modal/project-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-projects',
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css'],
-  imports: [CommonModule, ProjectFilterPipe, ProjectModalComponent]
+  imports: [CommonModule, ProjectFilterPipe, ProjectModalComponent, FormsModule]
 })
 export class ProjectsComponent {
-  // Liste de toutes les technos possibles (pour affichage des boutons/menus)
+  // Liste de toutes les technos possibles
   allTechs: string[] = [
     'All',
     'Django',
@@ -27,25 +28,30 @@ export class ProjectsComponent {
     'CSS',
     'JavaScript',
     'Python',
-    'Scikit-learn'
+    'Scikit-learn',
+    'Angular',
+    'Spring Boot',
+    'TypeScript',
+    'Java'
   ];
 
   // Techno sélectionnée
   selectedTech: string = 'All';
+  searchTerm: string = '';
 
-  // listeS deS projets
+  // Liste des projets
   projects: Project[] = [
     {
       name: 'Projet de Monitoring de Température',
-      description: 'Développement d’un système de surveillance de température basé sur Django, ESP8266 et DHT11.',
+      description: 'Développement d\'un système de surveillance de température basé sur Django, ESP8266 et DHT11.',
       technologies: ['Django', 'ESP8266', 'DHT11', 'Bootstrap', 'PCB Design'],
       features: [
         'Affichage des températures en temps réel sur un tableau de bord web',
-        'Connexion Wi-Fi de l’ESP8266 pour la transmission des données',
+        'Connexion Wi-Fi de l\'ESP8266 pour la transmission des données',
         'Stockage des données sur une base de données pour un historique détaillé',
         'Alertes par e-mail, Telegram et WhatsApp en cas de température anormale',
-        'Gestion des utilisateurs avec différents niveaux d’accès',
-        'Génération automatique de rapports PDF pour l’historique des relevés',
+        'Gestion des utilisateurs avec différents niveaux d\'accès',
+        'Génération automatique de rapports PDF pour l\'historique des relevés',
         'Visualisation des données sous forme de graphiques interactifs'
       ],
       repoLink: 'https://github.com/aazdagabde/provesoire',
@@ -63,7 +69,9 @@ export class ProjectsComponent {
         'assets/screens/temp/9.png',
         'assets/screens/temp/10.png',
         'assets/screens/temp/11.png'
-      ]
+      ],
+      thumbnail: 'assets/screens/temp/0.png',
+      completionDate: '01/2025'
     },
     {
       name: 'Projet SQL Injection',
@@ -88,7 +96,9 @@ export class ProjectsComponent {
         'assets/screens/sqlinj/9.png',
         'assets/screens/sqlinj/10.png',
         'assets/screens/sqlinj/11.png'
-      ]
+      ],
+      thumbnail: 'assets/screens/sqlinj/1.png',
+      completionDate: '11/2024'
     },
     {
       name: 'Jeu TIC TAC TOE',
@@ -106,7 +116,9 @@ export class ProjectsComponent {
         'assets/screens/tic/tic2.png',
         'assets/screens/tic/tic3.png',
         'assets/screens/tic/tic4.png'
-      ]
+      ],
+      thumbnail: 'assets/screens/tic/tic1.png',
+      completionDate: '07/2023'
     },
     {
       name: 'Système de Surveillance du Climat (Maquette)',
@@ -117,7 +129,7 @@ export class ProjectsComponent {
         'Affichage dynamique des données climatiques sur une interface web',
         'Collecte et analyse des données avec Machine Learning',
         'Entraînement d’un modèle ML pour prédire les futures données climatiques',
-        'Entraînement d’un modèle ML pour détecter les anomalies des mesures climatiques'
+        'Détection d\'anomalies dans les mesures climatiques grâce à l\'IA'
       ],
       repoLink: 'https://github.com/aazdagabde/MSO_ITIRC25',
       demoLink: 'https://mso.pythonanywhere.com/',
@@ -138,11 +150,9 @@ export class ProjectsComponent {
         'assets/screens/climat/a13.png',
         'assets/screens/climat/a14.png',
         'assets/screens/climat/a15.png'
-
-        
-      ]
-
-
+      ],
+      thumbnail: 'assets/screens/climat/1.png',
+      completionDate: '12/2024'
     },
     {
       name: 'Portfolio Développeur Web',
@@ -155,7 +165,7 @@ export class ProjectsComponent {
         'Intégration d’un panneau d’administration pour modification en temps réel',
         'Hébergement via Netlify et API déployée sur Render'
       ],
-      repoLink: '', 
+      repoLink: '',
       demoLink: 'https://aazdagabdepf.netlify.app/projects',
       screenshots: [
         'assets/portfolio/im1.png',
@@ -166,15 +176,15 @@ export class ProjectsComponent {
         'assets/portfolio/im6.png',
         'assets/portfolio/im7.png',
         'assets/portfolio/im8.png'
-       
-      ]
+      ],
+      thumbnail: 'assets/portfolio/im1.png',
+      completionDate: '04/2025'
     }
-    
   ];
 
   // Contrôle de la modal
   showModal: boolean = false;
-  currentScreens: string[] = []; // captures du projet sélectionné
+  currentScreens: string[] = [];
 
   selectTechnology(tech: string) {
     this.selectedTech = tech;
@@ -187,5 +197,10 @@ export class ProjectsComponent {
 
   closeModal() {
     this.showModal = false;
+  }
+
+  getUniqueCategories(): string[] {
+    const categories = this.projects.map(p => (p as any).category).filter(Boolean);
+    return [...new Set(categories)] as string[];
   }
 }
