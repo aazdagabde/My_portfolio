@@ -19,12 +19,14 @@ export class SoftSkillsComponent {
     { name: 'Communication', level: 80 },
     { name: 'Travail d’équipe', level: 85 },
     { name: 'Adaptabilité', level: 90 },
-    { name: 'Gestion du temps', level: 75 },
+    { name: 'Gestion du temps', level: 85 },
     { name: 'Résolution de problèmes', level: 85 },
     { name: 'Organisation', level: 80 },
     { name: 'Esprit analytique', level: 85 },
     { name: 'Apprentissage autonome', level: 90 }
 ];
+
+  
 
 
   // Si tu avais besoin de filtrer ou de trier, fais-le avec une méthode.

@@ -1,54 +1,50 @@
 <div class="experiences-container">
   <div class="resume-wrapper">
-    <h2>Mon Parcours</h2>
+    <h2>Mon Parcours Professionnel</h2>
     
     <div class="timeline">
-      <div class="timeline-item">
+      <!-- Éducation -->
+      <div class="timeline-item" *ngFor="let education of educations; let i = index" 
+           [class.visible]="isVisible[i]">
         <div class="timeline-date">
-          <i class="fas fa-calendar-alt"></i> 01/2023 - 01/2026
+          <i class="fas fa-calendar-alt"></i> {{ education.period }}
         </div>
         <div class="timeline-content">
-          <h3>Cycle d'ingénieur (ENSAO - ITIRC)</h3>
-          <p>Spécialisation en Ingénierie des TI et Réseaux de Communication. Acquisition de compétences avancées en développement logiciel, réseaux et systèmes d'information.</p>
+          <h3>{{ education.degree }}</h3>
+          <span class="position">{{ education.institution }}</span>
+          <p>{{ education.description }}</p>
+          <div class="tech-badges">
+            <span class="tech-badge" *ngFor="let tech of education.technologies">
+              <i [class]="tech.icon"></i> {{ tech.name }}
+            </span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item">
+      <!-- Expériences professionnelles -->
+      <div class="timeline-item" *ngFor="let experience of experiences; let i = index" 
+           [class.visible]="isVisible[educations.length + i]">
         <div class="timeline-date">
-          <i class="fas fa-calendar-alt"></i> 09/2021 - 06/2023
+          <i class="fas fa-calendar-alt"></i> {{ experience.period }}
         </div>
         <div class="timeline-content">
-          <h3>DEUG en Sciences Mathématiques et Informatique</h3>
-          <p>Faculté Polydisciplinaire Ouarzazate, Mention Bien. Fondamentaux en algorithmique, programmation et mathématiques appliquées.</p>
+          <h3>{{ experience.position }}</h3>
+          <span class="position">{{ experience.company }}</span>
+          <p>{{ experience.description }}</p>
+          <div class="tech-badges">
+            <span class="tech-badge" *ngFor="let tech of experience.technologies">
+              <i [class]="tech.icon"></i> {{ tech.name }}
+            </span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="experience-section">
-      <h3>Expériences Professionnelles</h3>
-      <ul class="experience-list">
-        <li>
-          <strong>Enquêteur principal (Haut-Commissariat au Plan)</strong>
-          <span class="date"><i class="far fa-calendar"></i> 08/2024 à 09/2024</span>
-          <p class="description">
-            Collecte et analyse de données statistiques, reconnaissance de terrains, coordination d'une équipe d'enquêteurs.
-          </p>
-        </li>
-        <li>
-          <strong>Organisation Journée Club ITIRC</strong>
-          <span class="date"><i class="far fa-calendar"></i> 10/2023 à 04/2024</span>
-          <p class="description">
-            Planification et coordination de l'événement, gestion logistique, communication avec les intervenants et participants.
-          </p>
-        </li>
-      </ul>
-    </div>
-
     <div class="download-section">
-      <p>Télécharger mon CV complet pour plus de détails :</p>
+      <p>Consultez mon CV complet pour plus de détails sur mon parcours :</p>
       <a href="assets/pdf/AAZDAG_ABDELLAH_2025.pdf" download class="download-btn">
         <i class="fas fa-file-download"></i>
-        <span>Télécharger CV (PDF)</span>
+        <span>Télécharger mon CV</span>
       </a>
     </div>
   </div>

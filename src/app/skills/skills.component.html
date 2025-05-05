@@ -1,14 +1,17 @@
-<div class="skills-page">
-    <h1>Mes Compétences</h1>
-  
-    <!-- Composant enfant : Technical Skills -->
-    <app-technical-skills></app-technical-skills>
-  
-    <!-- Composant enfant : Soft Skills -->
-    <app-soft-skills></app-soft-skills>
-  
-    <!-- Composant enfant : Certifications -->
-    <app-certifications></app-certifications>
-  
+<div class="skills-container">
+  <section class="skills-hero">
+    <h1 class="skills-title">Mes Compétences</h1>
+    <p class="skills-subtitle">Expertise technique et savoir-être professionnel</p>
+  </section>
+
+  <div class="skills-layout">
+    <div class="main-column">
+      <app-technical-skills></app-technical-skills>
+    </div>
+
+    <div class="secondary-column">
+      <app-soft-skills></app-soft-skills>
+      <app-certifications></app-certifications>
+    </div>
   </div>
-  
+</div>

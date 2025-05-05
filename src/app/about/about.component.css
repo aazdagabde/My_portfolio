@@ -1,24 +1,37 @@
+:root {
+  --primary-color: #2272ff;
+  --primary-dark: #1a5bd9;
+  --primary-light: rgba(34, 114, 255, 0.1);
+  --dark-bg: #0f0f13;
+  --darker-bg: #0a0a0d;
+  --light-gray: #e0e0e0;
+  --medium-gray: #a0a0a0;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
 .about-container {
-  background-size: cover;
+  background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 2rem 1rem;
   position: relative;
   overflow: hidden;
-  font-family: 'Courier New', monospace;
-  background-color: rgba(29, 29, 29, 0.8);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .about-container::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -50%;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(34, 114, 255, 0.05) 0%, transparent 70%);
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(34, 114, 255, 0.15) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(34, 114, 255, 0.15) 0%, transparent 30%);
   z-index: 0;
+  animation: gradientPulse 15s ease infinite alternate;
 }
 
 .about-wrapper {
@@ -26,22 +39,28 @@
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  background: rgba(29, 29, 29, 0.9);
-  border-radius: 10px;
-  padding: 2rem;
-  box-shadow: 0 4px 20px rgba(34, 114, 255, 0.1);
+  background: rgba(15, 15, 19, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(34, 114, 255, 0.2),
+    0 0 20px rgba(34, 114, 255, 0.1);
   animation: fadeInUp 0.8s ease;
-  border: 1px solid var(--primary-color);
+  border: 1px solid rgba(34, 114, 255, 0.3);
 }
 
 .about-container h2 {
   color: var(--primary-color);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   position: relative;
-  padding-bottom: 0.5rem;
-  letter-spacing: 2px;
+  padding-bottom: 1rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(34, 114, 255, 0.3);
 }
 
 .about-container h2::after {
@@ -50,135 +69,349 @@
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: var(--primary-color);
-  box-shadow: 0 0 10px var(--primary-color);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent 0%, var(--primary-color) 50%, transparent 100%);
+  box-shadow: 0 0 15px var(--primary-color);
 }
 
 .about-content {
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
-  margin-bottom: 3rem;
+  gap: 4rem;
+  margin-bottom: 4rem;
   align-items: center;
 }
 
 .profile-photo {
-  width: 280px;
-  height: 280px;
+  width: 300px;
+  height: 300px;
   border-radius: 20px;
   object-fit: cover;
   border: 3px solid var(--primary-color);
-  box-shadow: 0 8px 20px rgba(34, 114, 255, 0.3);
-  transition: transform 0.3s ease;
-  filter: grayscale(30%) contrast(110%);
+  box-shadow: 
+    0 10px 25px rgba(34, 114, 255, 0.3),
+    0 0 0 8px rgba(34, 114, 255, 0.05);
+  transition: var(--transition);
+  filter: grayscale(20%) contrast(110%) brightness(0.95);
+  position: relative;
+  z-index: 1;
 }
 
 .profile-photo:hover {
-  transform: scale(1.02);
-  filter: grayscale(0%) contrast(110%);
-  box-shadow: 0 0 20px var(--primary-color);
+  transform: scale(1.03);
+  filter: grayscale(0%) contrast(110%) brightness(1);
+  box-shadow: 
+    0 10px 30px rgba(34, 114, 255, 0.5),
+    0 0 0 8px rgba(34, 114, 255, 0.1);
 }
 
 .bio {
   flex: 1;
   min-width: 300px;
   color: var(--light-gray);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   line-height: 1.8;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
+}
+
+.bio p {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.bio p:last-child {
+  margin-bottom: 0;
 }
 
 .bio strong {
   color: var(--primary-color);
+  font-weight: 600;
 }
 
 .contact-details {
-  background-color: rgba(29, 29, 29, 0.9);
-  padding: 2rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
+  background: linear-gradient(135deg, rgba(15, 15, 19, 0.7) 0%, rgba(10, 10, 13, 0.7) 100%);
+  padding: 2.5rem;
+  border-radius: 12px;
+  margin-bottom: 3rem;
   border-left: 4px solid var(--primary-color);
-  box-shadow: 0 0 10px rgba(34, 114, 255, 0.2);
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-details::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 65%, rgba(34, 114, 255, 0.03) 100%);
+  pointer-events: none;
 }
 
 .contact-details h3 {
   margin-top: 0;
   color: var(--primary-color);
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
   position: relative;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
 }
 
 .contact-details h3::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -12px;
   left: 0;
-  width: 50px;
-  height: 2px;
+  width: 60px;
+  height: 3px;
   background: var(--primary-color);
-  box-shadow: 0 0 5px var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color);
 }
 
 .contact-details p {
-  margin: 1rem 0;
-  font-size: 1rem;
+  margin: 1.2rem 0;
+  font-size: 1.1rem;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
+  color: var(--light-gray);
+}
+
+.contact-details i {
+  width: 24px;
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 1.2rem;
 }
 
 .contact-details a {
   color: var(--primary-color);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: var(--transition);
+  position: relative;
+  font-weight: 500;
+}
+
+.contact-details a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--primary-color);
+  transition: var(--transition);
 }
 
 .contact-details a:hover {
   color: white;
-  text-decoration: underline;
+}
+
+.contact-details a:hover::after {
+  width: 100%;
+}
+
+.values-section {
+  background: linear-gradient(135deg, rgba(15, 15, 19, 0.7) 0%, rgba(10, 10, 13, 0.7) 100%);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.values-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(34, 114, 255, 0.03) 0%, transparent 35%);
+  pointer-events: none;
 }
 
 .values-section h3 {
   color: var(--primary-color);
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  margin-bottom: 2rem;
   text-align: center;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  position: relative;
+}
+
+.values-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background: var(--primary-color);
+  box-shadow: 0 0 10px var(--primary-color);
 }
 
 .values-section p {
   color: var(--light-gray);
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.15rem;
+  line-height: 1.9;
   text-align: center;
   max-width: 800px;
-  margin: 0 auto 2rem;
-  letter-spacing: 0.5px;
+  margin: 0 auto 1.5rem;
+  letter-spacing: 0.3px;
 }
 
-/* Animation */
+/* Animations */
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
+  0% { opacity: 0; transform: translateY(30px); }
   100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientPulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
 }
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
+  .about-wrapper {
+    padding: 2rem;
+  }
+  
   .about-content {
     flex-direction: column;
     text-align: center;
+    gap: 2.5rem;
   }
   
   .profile-photo {
-    width: 220px;
-    height: 220px;
+    width: 240px;
+    height: 240px;
   }
   
   .contact-details {
     text-align: left;
+    padding: 2rem;
+  }
+  
+  .contact-details p {
+    justify-content: center;
+  }
+  
+  .values-section {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-container h2 {
+    font-size: 2.2rem;
+  }
+  
+  .bio {
+    font-size: 1rem;
+  }
+  
+  .contact-details h3,
+  .values-section h3 {
+    font-size: 1.5rem;
+  }
+  
+  .contact-details p {
+    font-size: 1rem;
+  }
+  
+  .values-section p {
+    font-size: 1rem;
+  }
+}
+/* Ajouter ces règles à la fin du fichier */
+@media (max-width: 576px) {
+  .about-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .about-wrapper {
+    padding: 1.5rem;
+    border-radius: 12px;
+  }
+  
+  .about-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+  
+  .bio {
+    min-width: 100%;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  
+  .contact-details,
+  .values-section {
+    padding: 1.5rem;
+  }
+  
+  .contact-details p,
+  .values-section p {
+    font-size: 0.95rem;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+  
+  .contact-details i {
+    margin-right: 0.5rem;
+  }
+  
+  .contact-details span,
+  .contact-details a {
+    width: 100%;
+    margin-top: 0.3rem;
+  }
+  
+  .values-section h3 {
+    font-size: 1.5rem;
+  }
+  
+  .about-container h2::after {
+    width: 80px;
+    height: 3px;
+  }
+}
+
+/* Pour les très petits écrans (moins de 400px) */
+@media (max-width: 400px) {
+  .profile-photo {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .about-container h2 {
+    font-size: 1.6rem;
+  }
+  
+  .bio p {
+    text-align: left;
+  }
+  
+  .contact-details p {
+    font-size: 0.9rem;
   }
 }

@@ -35,17 +35,17 @@ export class TechnicalSkillsComponent implements OnInit {
     { category: 'Frameworks',               name: 'JEE',          logo: 'assets/logos/jee.svg',      level: 60 },
     { category: 'Frameworks',               name: 'Bootstrap',    logo: 'assets/logos/boot.png',level: 70 },
 
-    { category: 'Bases de données',         name: 'MySQL',        logo: 'assets/logos/mysql.png',    level: 60 },
+    { category: 'Bases de données',         name: 'MySQL',        logo: 'assets/logos/mysql.png',    level: 80 },
     { category: 'Bases de données',         name: 'Oracle',       logo: 'assets/logos/oracle.png',   level: 55 },
-    { category: 'Bases de données',         name: 'MongoDB',      logo: 'assets/logos/MongoDB.png',  level: 50 },
+    { category: 'Bases de données',         name: 'MongoDB',      logo: 'assets/logos/MongoDB.png',  level: 83 },
 
     { category: 'Outils & Logiciels',       name: 'Git',          logo: 'assets/logos/git.png',      level: 75 },
-    { category: 'Outils & Logiciels',       name: 'Docker',       logo: 'assets/logos/Docker.png',   level: 60 },
+    { category: 'Outils & Logiciels',       name: 'Docker',       logo: 'assets/logos/Docker.png',   level: 70 },
     { category: 'Outils & Logiciels',       name: 'MATLAB',       logo: 'assets/logos/MATLAB.png',   level: 55 },
     { category: 'Outils & Logiciels',       name: 'Jupyter',      logo: 'assets/logos/Jupyter.png',  level: 50 },
-    { category: 'Outils & Logiciels',       name: 'Microsoft Office', logo: 'assets/logos/office.jpg', level: 70 },
+    { category: 'Outils & Logiciels',       name: 'Microsoft Office', logo: 'assets/logos/office.jpg', level: 80 },
 
-    { category: 'Méthodologies',            name: 'Agile/Scrum',  logo: 'assets/logos/agile.webp',    level: 65 }
+    { category: 'Méthodologies',            name: 'Agile/Scrum',  logo: 'assets/logos/agile.webp',    level: 75 }
 ];
 
 

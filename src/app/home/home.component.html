@@ -1,64 +1,59 @@
 <div class="home-container">
   <div class="content-wrapper">
-    <!-- SECTION GAUCHE : Texte animé, slogan, description et liens -->
+    <!-- SECTION GAUCHE : Texte et CTA -->
     <div class="left-section">
-      <!-- Texte tapé pour le nom et le titre -->
+      <!-- Ligne de code type terminal -->
+      <div class="code-line" #codeLine>Je suis AAZDAG Abdellah</div>
+      
+      <!-- Nom/Titre animé -->
       <h1 class="typed-name" #typedName></h1>
       
-      <!-- Texte secondaire animé en boucle -->
+      <!-- Sous-titre animé -->
       <p class="typed-sub" #typedSub></p>
       
-      <!-- Slogan -->
-      <p class="slogan">Créer, Innover, Transformer</p>
+      <!-- Badges technologies -->
+      <div class="tech-badges">
+        <span class="badge">Angular</span>
+        <span class="badge">Spring Boot</span>
+        <span class="badge">TypeScript</span>
+        <span class="badge">Docker</span>
+      </div>
       
-      <!-- Description / Profil -->
+      <!-- Description -->
       <p class="profile-description">
-        Élève ingénieur à l’ENSA Oujda, passionné par le développement web Full Stack.<br>
-        Actuellement à la recherche d’un stage de fin d’année (Juillet à Août 2025),<br>
-        je souhaite mettre mes compétences au service d’une entreprise dynamique et innovante.
+        Élève ingénieur à l'ENSA Oujda, spécialisé en développement Full Stack.
+        Passionné par la création de solutions web innovantes et performantes.
       </p>
       
-      <!-- Boutons pour télécharger l'attestation et le CV -->
+      <!-- Boutons CTA -->
       <div class="cta-buttons">
-        <a 
-          href="assets/pdf/attestation.pdf" 
-          download 
-          class="cta-button download-cv"
-          aria-label="Télécharger l'attestation PFA"
-        >
-          Attestation PFA
+        <a href="assets/pdf/AAZDAG_ABDELLAH_2025.pdf" download class="cta-button primary">
+          <i class="fas fa-download"></i> Télécharger CV
         </a>
-        <a 
-          href="assets/pdf/AAZDAG_ABDELLAH_2025.pdf" 
-          download 
-          class="cta-button download-cv"
-          aria-label="Télécharger le CV"
-        >
-          CV - version 2/4/2025
+        <a href="/contact" class="cta-button secondary">
+          <i class="fas fa-paper-plane"></i> Me contacter
         </a>
       </div>
     </div>
     
-    <!-- SECTION DROITE : Images hexagonales -->
+    <!-- SECTION DROITE : Image profil -->
     <div class="right-section">
-      <div class="hex-images">
-        <!-- Hexagone Grand -->
+      <div class="profile-image-container">
         <img 
-          src="assets/myph/im1.jpg" 
-          alt="Évènement marquant"
-          class="hex-image hex-image-big"
+          src="assets/images/aazdag.png" 
+          alt="Abdellah Aazdag - Développeur Full Stack"
+          class="profile-image"
         />
-        <!-- Hexagones Moyens -->
-        <img 
-          src="assets/myph/im2.jpg" 
-          alt="Compétences"
-          class="hex-image hex-image-medium"
-        />
-        <img 
-          src="assets/myph/img3.jpg" 
-          alt="Passion pour la Tech"
-          class="hex-image hex-image-medium"
-        />
+        <div class="image-overlay"></div>
+        <div class="tech-circle angular">
+          <i class="fab fa-angular"></i>
+        </div>
+        <div class="tech-circle spring">
+          <i class="fas fa-leaf"></i>
+        </div>
+        <div class="tech-circle docker">
+          <i class="fab fa-docker"></i>
+        </div>
       </div>
     </div>
   </div>

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { trigger, transition, style, animate } from '@angular/animations';
+import { CursorHaloDirective } from './directives/cursor-halo.directive';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CursorHaloDirective],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [
@@ -25,3 +26,4 @@ export class AppComponent {
     this.isNavOpen = !this.isNavOpen;
   }
 }
+
