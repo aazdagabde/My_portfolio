@@ -1,94 +1,94 @@
 <div appCursorHalo>
-<header class="header">
-  <nav class="nav">
-    <!-- Logo/Nom -->
-    <div class="logo" routerLink="/home">
-      <span class="logo-accent">&lt;</span>
-      AAZDAG_ABDELLAH
-      <span class="logo-accent">/&gt;</span>
-    </div>
-
-    <!-- Menu desktop -->
-    <ul class="nav-links">
-      <li><a routerLink="/home" routerLinkActive="active">Accueil</a></li>
-      <li><a routerLink="/about" routerLinkActive="active">À propos</a></li>
-      <li><a routerLink="/experiences" routerLinkActive="active">Expérience</a></li>
-      <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
-      <li><a routerLink="/projects" routerLinkActive="active">Projets</a></li>
-      <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
-    </ul>
-
-    <!-- Menu mobile -->
-    <button class="hamburger" (click)="toggleNav()" [class.active]="isNavOpen" aria-label="Menu">
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-      <span class="hamburger-line"></span>
-    </button>
-  </nav>
-
-  <!-- Menu mobile ouvert -->
-  <div class="mobile-nav" [class.open]="isNavOpen">
-    <a routerLink="/home" (click)="toggleNav()">Accueil</a>
-    <a routerLink="/about" (click)="toggleNav()">À propos</a>
-    <a routerLink="/skills" (click)="toggleNav()">Compétences</a>
-    <a routerLink="/experiences" (click)="toggleNav()">Expérience</a>
-    <a routerLink="/projects" (click)="toggleNav()">Projets</a>
-    <a routerLink="/contact" (click)="toggleNav()">Contact</a>
-  </div>
-</header>
-
-<main class="main-content" [@fadeIn]>
-  <router-outlet></router-outlet>
-</main>
-
-<footer class="footer">
-  <div class="footer-content">
-    <!-- Section description -->
-    <div class="footer-section">
-      <div class="logo">
+  <header class="header">
+    <nav class="nav">
+      <!-- Logo/Nom -->
+      <div class="logo" routerLink="/home">
         <span class="logo-accent">&lt;</span>
         AAZDAG_ABDELLAH
         <span class="logo-accent">/&gt;</span>
       </div>
-      <p class="footer-quote">
-        "Transformer des idées en solutions innovantes est ma passion."
-      </p>
-    </div>
-
-    <!-- Section liens rapides -->
-    <div class="footer-section">
-      <h3>Navigation</h3>
-      <ul>
-        <li><a routerLink="/home">Accueil</a></li>
-        <li><a routerLink="/about">À propos</a></li>
-        <li><a routerLink="/experiences">Expérience </a></li>
-        <li><a routerLink="/skills">Compétences</a></li>
-        <li><a routerLink="/projects">Projets</a></li>
-        <li><a routerLink="/contact">Contact</a></li>
-        
+  
+      <!-- Menu desktop -->
+      <ul class="nav-links">
+        <li><a routerLink="/home" routerLinkActive="active">Accueil</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">À propos</a></li>
+        <li><a routerLink="/experiences" routerLinkActive="active">Expérience</a></li>
+        <li><a routerLink="/skills" routerLinkActive="active">Compétences</a></li>
+        <li><a routerLink="/projects" routerLinkActive="active">Projets</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
       </ul>
+  
+      <!-- Menu mobile -->
+      <button class="hamburger" (click)="toggleNav()" [class.active]="isNavOpen" aria-label="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </nav>
+  
+    <!-- Menu mobile ouvert -->
+    <div class="mobile-nav" [class.open]="isNavOpen">
+      <a routerLink="/home" (click)="toggleNav()">Accueil</a>
+      <a routerLink="/about" (click)="toggleNav()">À propos</a>
+      <a routerLink="/skills" (click)="toggleNav()">Compétences</a>
+      <a routerLink="/experiences" (click)="toggleNav()">Expérience</a>
+      <a routerLink="/projects" (click)="toggleNav()">Projets</a>
+      <a routerLink="/contact" (click)="toggleNav()">Contact</a>
     </div>
-
-    <!-- Section réseaux sociaux -->
-    <div class="footer-section">
-      <h3>Réseaux</h3>
-      <div class="social-links">
-        <a href="https://github.com/aazdagabde" target="_blank" aria-label="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/aazdag-abdellah/" target="_blank" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-        <a href="mailto:aazdag.abdellah@email.com" aria-label="Email">
-          <i class="fas fa-envelope"></i>
-        </a>
+  </header>
+  
+  <main class="main-content" [@fadeIn]>
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <!-- Section description -->
+      <div class="footer-section">
+        <div class="logo">
+          <span class="logo-accent">&lt;</span>
+          AAZDAG_ABDELLAH
+          <span class="logo-accent">/&gt;</span>
+        </div>
+        <p class="footer-quote">
+          "Transformer des idées en solutions innovantes est ma passion."
+        </p>
+      </div>
+  
+      <!-- Section liens rapides -->
+      <div class="footer-section">
+        <h3>Navigation</h3>
+        <ul>
+          <li><a routerLink="/home">Accueil</a></li>
+          <li><a routerLink="/about">À propos</a></li>
+          <li><a routerLink="/experiences">Expérience </a></li>
+          <li><a routerLink="/skills">Compétences</a></li>
+          <li><a routerLink="/projects">Projets</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+          
+        </ul>
+      </div>
+  
+      <!-- Section réseaux sociaux -->
+      <div class="footer-section">
+        <h3>Réseaux</h3>
+        <div class="social-links">
+          <a href="https://github.com/aazdagabde" target="_blank" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/aazdag-abdellah/" target="_blank" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+          <a href="mailto:aazdag.abdellah@email.com" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
       </div>
     </div>
+  
+    <div class="footer-bottom">
+      <p>© 2025 Portfolio Abdellah Aazdag v2 final - Tous droits réservés</p>
+      <p>Développé avec Angular, Spring Boot et ❤️</p>
+    </div>
+  </footer>
   </div>
-
-  <div class="footer-bottom">
-    <p>© 2025 Portfolio Abdellah Aazdag v2 final - Tous droits réservés</p>
-    <p>Développé avec Angular, Spring Boot et ❤️</p>
-  </div>
-</footer>
-</div>

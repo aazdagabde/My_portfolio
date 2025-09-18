@@ -6,7 +6,7 @@ import { CursorHaloDirective } from './directives/cursor-halo.directive';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterModule, CursorHaloDirective],
+  imports: [RouterModule,CursorHaloDirective],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [

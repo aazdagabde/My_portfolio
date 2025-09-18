@@ -10,7 +10,7 @@
 }
 
 .about-container {
-  background: linear-gradient(135deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+  background: linear-gradient(135deg,  #0a0a0d 0%, #0f0f13 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -52,7 +52,7 @@
 }
 
 .about-container h2 {
-  color: var(--primary-color);
+  color: #2272ff;
   margin-bottom: 2.5rem;
   text-align: center;
   font-size: 2.8rem;
@@ -71,8 +71,8 @@
   transform: translateX(-50%);
   width: 120px;
   height: 4px;
-  background: linear-gradient(90deg, transparent 0%, var(--primary-color) 50%, transparent 100%);
-  box-shadow: 0 0 15px var(--primary-color);
+  background: linear-gradient(90deg, transparent 0%, #2272ff 50%, transparent 100%);
+  box-shadow: 0 0 15px #2272ff;
 }
 
 .about-content {
@@ -88,7 +88,7 @@
   height: 300px;
   border-radius: 20px;
   object-fit: cover;
-  border: 3px solid var(--primary-color);
+  border: 3px solid #2272ff;
   box-shadow: 
     0 10px 25px rgba(34, 114, 255, 0.3),
     0 0 0 8px rgba(34, 114, 255, 0.05);
@@ -109,7 +109,7 @@
 .bio {
   flex: 1;
   min-width: 300px;
-  color: var(--light-gray);
+  color:#e0e0e0;
   font-size: 1.15rem;
   line-height: 1.8;
   letter-spacing: 0.3px;
@@ -125,7 +125,7 @@
 }
 
 .bio strong {
-  color: var(--primary-color);
+  color: #2272ff;
   font-weight: 600;
 }
 
@@ -134,7 +134,7 @@
   padding: 2.5rem;
   border-radius: 12px;
   margin-bottom: 3rem;
-  border-left: 4px solid var(--primary-color);
+  border-left: 4px solid #2272ff;
   box-shadow: 
     0 5px 15px rgba(0, 0, 0, 0.2),
     inset 0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -155,7 +155,7 @@
 
 .contact-details h3 {
   margin-top: 0;
-  color: var(--primary-color);
+  color: #2272ff;
   font-size: 1.8rem;
   margin-bottom: 2rem;
   position: relative;
@@ -170,8 +170,8 @@
   left: 0;
   width: 60px;
   height: 3px;
-  background: var(--primary-color);
-  box-shadow: 0 0 10px var(--primary-color);
+  background: #2272ff;
+  box-shadow: 0 0 10px #2272ff;
 }
 
 .contact-details p {
@@ -180,18 +180,18 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: var(--light-gray);
+  color:#e0e0e0;
 }
 
 .contact-details i {
   width: 24px;
   text-align: center;
-  color: var(--primary-color);
+  color: #2272ff;
   font-size: 1.2rem;
 }
 
 .contact-details a {
-  color: var(--primary-color);
+  color: #2272ff;
   text-decoration: none;
   transition: var(--transition);
   position: relative;
@@ -205,7 +205,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: var(--primary-color);
+  background: #2272ff;
   transition: var(--transition);
 }
 
@@ -222,7 +222,7 @@
   padding: 3rem;
   border-radius: 12px;
   box-shadow: 
-    0 5px 15px rgba(0, 0, 0, 0.2),
+    0 5px 15px rgba(227, 219, 219, 0.768),
     inset 0 0 0 1px rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
@@ -240,7 +240,7 @@
 }
 
 .values-section h3 {
-  color: var(--primary-color);
+  color: #2272ff;
   font-size: 2rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -257,12 +257,12 @@
   transform: translateX(-50%);
   width: 80px;
   height: 3px;
-  background: var(--primary-color);
-  box-shadow: 0 0 10px var(--primary-color);
+  background: #2272ff;
+  box-shadow: 0 0 10px #2272ff;
 }
 
 .values-section p {
-  color: var(--light-gray);
+  color:#e0e0e0;
   font-size: 1.15rem;
   line-height: 1.9;
   text-align: center;
