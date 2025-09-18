@@ -4,22 +4,53 @@
     <p class="subtitle">Une question, une opportunité ou simplement envie d'échanger ? Envoyez-moi un message.</p>
   </div>
 
+  <!-- Message d'erreur -->
+  @if (showErrorMessage) {
+    <div class="error-message">
+      <fa-icon [icon]="faCircleExclamation"></fa-icon>
+      <p>{{ errorMessage }}</p>
+      <button (click)="showErrorMessage = false" class="close-btn">
+        <fa-icon [icon]="faTimes"></fa-icon>
+      </button>
+    </div>
+  }
+
   <div class="contact-wrapper">
     <!-- Formulaire de contact -->
     <div class="contact-form-container">
-      <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+      <form #contactForm="ngForm">
         <div class="form-group">
           <label for="name">
-            <fa-icon [icon]="faUser"></fa-icon> Nom complet
+            <fa-icon [icon]="faUser"></fa-icon> Nom complet <span class="required">*</span>
           </label>
-          <input type="text" id="name" name="name" [(ngModel)]="formData.name" required>
+          <input 
+            type="text" 
+            id="name" 
+            name="name" 
+            [(ngModel)]="formData.name" 
+            #nameModel="ngModel"
+            (blur)="validateField('name', formData.name, nameModel)"
+            required>
+          @if (fieldErrors['name']) {
+            <span class="error-text"><fa-icon [icon]="faCircleExclamation"></fa-icon> {{ fieldErrors['name'] }}</span>
+          }
         </div>
 
         <div class="form-group">
           <label for="email">
-            <fa-icon [icon]="faEnvelope"></fa-icon> Adresse email
+            <fa-icon [icon]="faEnvelope"></fa-icon> Adresse email <span class="required">*</span>
           </label>
-          <input type="email" id="email" name="email" [(ngModel)]="formData.email" required>
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            [(ngModel)]="formData.email" 
+            #emailModel="ngModel"
+            (blur)="validateField('email', formData.email, emailModel)"
+            required>
+          @if (fieldErrors['email']) {
+            <span class="error-text"><fa-icon [icon]="faCircleExclamation"></fa-icon> {{ fieldErrors['email'] }}</span>
+          }
         </div>
 
         <div class="form-group">
@@ -31,12 +62,26 @@
 
         <div class="form-group">
           <label for="message">
-            <fa-icon [icon]="faCommentAlt"></fa-icon> Message
+            <fa-icon [icon]="faCommentAlt"></fa-icon> Message <span class="required">*</span>
           </label>
-          <textarea id="message" name="message" rows="6" [(ngModel)]="formData.message" required></textarea>
+          <textarea 
+            id="message" 
+            name="message" 
+            rows="6" 
+            [(ngModel)]="formData.message" 
+            #messageModel="ngModel"
+            (blur)="validateField('message', formData.message, messageModel)"
+            required></textarea>
+          @if (fieldErrors['message']) {
+            <span class="error-text"><fa-icon [icon]="faCircleExclamation"></fa-icon> {{ fieldErrors['message'] }}</span>
+          }
         </div>
 
-        <button type="submit" [disabled]="!contactForm.valid || isSubmitting" class="submit-btn">
+        <button 
+          type="button" 
+          (click)="openConfirmationModal(contactForm)" 
+          [disabled]="isSubmitting" 
+          class="submit-btn">
           @if (!isSubmitting) {
             <span><fa-icon [icon]="faPaperPlane"></fa-icon> Envoyer le message</span>
           }
@@ -61,7 +106,7 @@
         
         <div class="info-item">
           <fa-icon [icon]="faEnvelope"></fa-icon>
-          <a href="mailto:abdellah.aazdag@gmail.com">abdellah.aazdag&#64;gmail.com</a>
+          <a href="mailto:aazdag.abdellah@gmail.com">aazdag.abdellah&#64;gmail.com</a>
         </div>
         
         <div class="info-item">
@@ -86,7 +131,25 @@
     </div>
   </div>
 
-  <!-- Message de confirmation -->
+  <!-- Modal de confirmation -->
+  @if (showConfirmationModal) {
+    <div class="confirmation-modal-overlay">
+      <div class="confirmation-modal">
+        <h3><fa-icon [icon]="faPaperPlane"></fa-icon> Confirmer l'envoi</h3>
+        <p>Êtes-vous sûr de vouloir envoyer ce message ?</p>
+        <div class="modal-actions">
+          <button (click)="closeConfirmationModal()" class="cancel-btn">
+            <fa-icon [icon]="faTimes"></fa-icon> Annuler
+          </button>
+          <button (click)="onSubmit(contactForm)" class="confirm-btn">
+            <fa-icon [icon]="faPaperPlane"></fa-icon> Confirmer
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Message de succès -->
   @if (showSuccessMessage) {
     <div class="success-message">
       <fa-icon [icon]="faCheckCircle"></fa-icon>

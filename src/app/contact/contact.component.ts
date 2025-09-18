@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -12,7 +12,8 @@ import {
   faTag, 
   faCommentAlt, 
   faPaperPlane, 
-  faPhone 
+  faPhone,
+  faCircleExclamation
 } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 
@@ -36,6 +37,7 @@ export class ContactComponent {
   faPhone = faPhone;
   faGithub = faGithub;
   faLinkedinIn = faLinkedinIn;
+  faCircleExclamation = faCircleExclamation;
 
   // Données du formulaire
   formData = {
@@ -47,13 +49,56 @@ export class ContactComponent {
 
   isSubmitting = false;
   showSuccessMessage = false;
+  showConfirmationModal = false;
+  showErrorMessage = false;
+  errorMessage = '';
+  fieldErrors: { [key: string]: string } = {};
 
   constructor(private http: HttpClient) {}
 
-  onSubmit() {
-    if (this.isSubmitting) return;
+  validateEmail(email: string): boolean {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(email);
+  }
+
+  validateField(field: string, value: string, model: NgModel) {
+    if (field === 'email' && value && !this.validateEmail(value)) {
+      this.fieldErrors[field] = 'Veuillez entrer une adresse email valide';
+      model.control.setErrors({ 'invalid': true });
+    } else if (field === 'name' && value && value.length < 2) {
+      this.fieldErrors[field] = 'Le nom doit contenir au moins 2 caractères';
+      model.control.setErrors({ 'invalid': true });
+    } else if (field === 'message' && value && value.length < 10) {
+      this.fieldErrors[field] = 'Le message doit contenir au moins 10 caractères';
+      model.control.setErrors({ 'invalid': true });
+    } else {
+      delete this.fieldErrors[field];
+      if (model.control.hasError('invalid')) {
+        model.control.setErrors(null);
+      }
+    }
+  }
+
+  openConfirmationModal(contactForm: NgForm) {
+    if (!contactForm.valid) {
+      this.showErrorMessage = true;
+      this.errorMessage = 'Veuillez remplir tous les champs obligatoires correctement';
+      setTimeout(() => this.showErrorMessage = false, 5000);
+      return;
+    }
+
+    this.showConfirmationModal = true;
+  }
+
+  closeConfirmationModal() {
+    this.showConfirmationModal = false;
+  }
+
+  onSubmit(contactForm: NgForm) {
+    if (this.isSubmitting || !contactForm.valid) return;
     
     this.isSubmitting = true;
+    this.showConfirmationModal = false;
     const apiUrl = 'https://mso.pythonanywhere.com/send-email/';
     
     this.http.post(apiUrl, this.formData, { responseType: 'text' })
@@ -72,7 +117,6 @@ export class ContactComponent {
     this.showSuccessMessage = true;
     this.resetForm();
     
-    // Masquer le message après 5 secondes
     setTimeout(() => {
       this.showSuccessMessage = false;
     }, 5000);
@@ -81,7 +125,12 @@ export class ContactComponent {
   private handleError(error: any) {
     console.error('Erreur lors de l\'envoi:', error);
     this.isSubmitting = false;
-    alert('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.');
+    this.showErrorMessage = true;
+    this.errorMessage = error.status === 0 
+      ? 'Erreur de connexion. Vérifiez votre connexion internet.' 
+      : 'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer plus tard.';
+    
+    setTimeout(() => this.showErrorMessage = false, 5000);
   }
 
   private resetForm() {
@@ -91,5 +140,6 @@ export class ContactComponent {
       subject: '', 
       message: '' 
     };
+    this.fieldErrors = {};
   }
 }

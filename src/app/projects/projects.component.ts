@@ -168,16 +168,22 @@ export class ProjectsComponent {
       repoLink: '',
       demoLink: 'https://aazdagabdepf.netlify.app/projects',
       screenshots: [
-        'assets/portfolio/im1.png',
-        'assets/portfolio/im2.png',
-        'assets/portfolio/im3.png',
-        'assets/portfolio/im4.png',
-        'assets/portfolio/im5.png',
-        'assets/portfolio/im6.png',
-        'assets/portfolio/im7.png',
-        'assets/portfolio/im8.png'
+        'assets/portfolio/i1.png',
+        'assets/portfolio/i2.png',
+        'assets/portfolio/i3.png',
+        'assets/portfolio/i4.png',
+        'assets/portfolio/i5.png',
+        'assets/portfolio/i6.png',
+        'assets/portfolio/i7.png',
+        'assets/portfolio/i8.png',
+        'assets/portfolio/i9.png',
+        'assets/portfolio/i10.png',
+        'assets/portfolio/i11.png',
+        'assets/portfolio/i12.png',
+        'assets/portfolio/i13.png',
+        'assets/portfolio/i14.png'
       ],
-      thumbnail: 'assets/portfolio/im1.png',
+      thumbnail: 'assets/portfolio/i1.png',
       completionDate: '04/2025'
     }
   ];
