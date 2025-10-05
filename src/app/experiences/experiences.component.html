@@ -1,29 +1,13 @@
 <div class="experiences-container">
   <div class="resume-wrapper">
-    <h2>Mon Parcours Professionnel</h2>
+    <h2>Mon Parcours</h2>
     
+    <h3 class="section-title">
+      <i class="fas fa-briefcase"></i> Expériences Professionnelles
+    </h3>
     <div class="timeline">
-      <!-- Éducation -->
-      <div class="timeline-item" *ngFor="let education of educations; let i = index" 
-           [class.visible]="isVisible[i]">
-        <div class="timeline-date">
-          <i class="fas fa-calendar-alt"></i> {{ education.period }}
-        </div>
-        <div class="timeline-content">
-          <h3>{{ education.degree }}</h3>
-          <span class="position">{{ education.institution }}</span>
-          <p>{{ education.description }}</p>
-          <div class="tech-badges">
-            <span class="tech-badge" *ngFor="let tech of education.technologies">
-              <i [class]="tech.icon"></i> {{ tech.name }}
-            </span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Expériences professionnelles -->
       <div class="timeline-item" *ngFor="let experience of experiences; let i = index" 
-           [class.visible]="isVisible[educations.length + i]">
+           [class.visible]="isVisible[i]">
         <div class="timeline-date">
           <i class="fas fa-calendar-alt"></i> {{ experience.period }}
         </div>
@@ -31,8 +15,52 @@
           <h3>{{ experience.position }}</h3>
           <span class="position">{{ experience.company }}</span>
           <p>{{ experience.description }}</p>
-          <div class="tech-badges">
+          <div class="tech-badges" *ngIf="experience.technologies.length > 0">
             <span class="tech-badge" *ngFor="let tech of experience.technologies">
+              <i [class]="tech.icon"></i> {{ tech.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="section-title">
+      <i class="fas fa-graduation-cap"></i> Formation
+    </h3>
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let education of educations; let i = index" 
+           [class.visible]="isVisible[experiences.length + i]">
+        <div class="timeline-date">
+          <i class="fas fa-calendar-alt"></i> {{ education.period }}
+        </div>
+        <div class="timeline-content">
+          <h3>{{ education.degree }}</h3>
+          <span class="position">{{ education.institution }}</span>
+          <p>{{ education.description }}</p>
+          <div class="tech-badges" *ngIf="education.technologies.length > 0">
+            <span class="tech-badge" *ngFor="let tech of education.technologies">
+              <i [class]="tech.icon"></i> {{ tech.name }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <h3 class="section-title">
+      <i class="fas fa-users"></i> Engagement Associatif
+    </h3>
+    <div class="timeline">
+      <div class="timeline-item" *ngFor="let extra of extracurricular; let i = index" 
+           [class.visible]="isVisible[experiences.length + educations.length + i]">
+        <div class="timeline-date">
+          <i class="fas fa-calendar-alt"></i> {{ extra.period }}
+        </div>
+        <div class="timeline-content">
+          <h3>{{ extra.position }}</h3>
+          <span class="position">{{ extra.company }}</span>
+          <p>{{ extra.description }}</p>
+          <div class="tech-badges" *ngIf="extra.technologies.length > 0">
+            <span class="tech-badge" *ngFor="let tech of extra.technologies">
               <i [class]="tech.icon"></i> {{ tech.name }}
             </span>
           </div>
@@ -42,7 +70,7 @@
 
     <div class="download-section">
       <p>Consultez mon CV complet pour plus de détails sur mon parcours :</p>
-      <a href="assets/pdf/CV_AAZDAG_ABDELLAH.pdf" download class="download-btn">
+      <a href="assets/pdf/CV_AAZDAG_ABDELLAH_VF_FR.pdf" download class="download-btn">
         <i class="fas fa-file-download"></i>
         <span>Télécharger mon CV</span>
       </a>

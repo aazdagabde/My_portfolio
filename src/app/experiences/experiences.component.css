@@ -365,3 +365,22 @@
     padding: 0.4rem 0.8rem;
   }
 }
+
+/* Style pour les titres de section */
+.section-title {
+  color: var(--light-gray);
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: left;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-title:first-of-type {
+  margin-top: 0;
+}
