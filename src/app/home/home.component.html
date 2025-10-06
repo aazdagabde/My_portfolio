@@ -1,61 +1,68 @@
-<div class="home-container">
-  <div class="content-wrapper">
-    <!-- SECTION GAUCHE : Texte et CTA -->
-    <div class="left-section">
-      <!-- Ligne de code type terminal -->
-      <div class="code-line" #codeLine>Je suis AAZDAG Abdellah</div>
-      
-      <!-- Nom/Titre animé -->
-      <h1 class="typed-name" #typedName></h1>
-      
-      <!-- Sous-titre animé -->
-      <p class="typed-sub" #typedSub></p>
-      
-      <!-- Badges technologies -->
-      <div class="tech-badges">
-        <span class="badge">Angular</span>
-        <span class="badge">Spring Boot</span>
-        <span class="badge">TypeScript</span>
-        <span class="badge">Docker</span>
+<!-- home.component.html -->
+<div class="home-container" role="main" aria-label="Page d'accueil - Abdellah Aazdag">
+  <!-- arrière-plan / particules (readonly pour a11y) -->
+  <div class="aurora-background" aria-hidden="true"></div>
+  <div class="floating-particles" #particles aria-hidden="true"></div>
+
+  <section class="glass-card" #glassCard>
+    <div class="content-wrapper">
+      <!-- LEFT: texte / présentation -->
+      <div class="left-section">
+        <h1 class="typed-name" #typedName aria-live="polite">Abdellah AAZDAG</h1>
+
+        <!-- on cible l'élément SPAN pour typed.js afin que le curseur reste collé -->
+        <p class="typed-sub" aria-live="polite">
+          <span class="typed-text" #typedSub></span>
+        </p>
+
+        <p class="profile-description">
+          Bonjour — je suis <strong>Abdellah Aazdag</strong>, ingénieur logiciel & architecte Full-Stack.
+          J'aime construire des écosystèmes logiciels robustes et intelligents : <strong>Frontend</strong> (Angular, React), <strong>Backend</strong> (Spring Boot, Python) et solutions <strong>IA/ML</strong> (LLMs, pipelines).
+          J'expose et déploie sur le Cloud (GCP, Docker, Kubernetes) avec une approche DevOps.
+        </p>
+
+        <div class="tech-badges" aria-hidden="false">
+          <span class="badge"><i class="fab fa-react" aria-hidden="true"></i> React</span>
+          <span class="badge"><i class="fab fa-angular" aria-hidden="true"></i> Angular</span>
+          <span class="badge"><i class="fas fa-leaf" aria-hidden="true"></i> Spring Boot</span>
+          <span class="badge"><i class="fab fa-python" aria-hidden="true"></i> Python</span>
+          <span class="badge"><i class="fas fa-robot" aria-hidden="true"></i> IA / LLMs</span>
+          <span class="badge"><i class="fas fa-cloud" aria-hidden="true"></i> GCP / DevOps</span>
+        </div>
+
+        <div class="cta-buttons">
+          <a href="assets/pdf/CV_AAZDAG_ABDELLAH_VF_FR.pdf" download class="cta-button primary" aria-label="Télécharger mon CV">
+            <i class="fas fa-download" aria-hidden="true"></i> Mon CV
+          </a>
+          <a routerLink="/projects" class="cta-button secondary" aria-label="Voir mes projets">
+            <i class="fas fa-project-diagram" aria-hidden="true"></i> Mes projets
+          </a>
+        </div>
       </div>
-      
-      <!-- Description -->
-      <p class="profile-description">
-        Élève ingénieur passionné par le développement d’applications
- web et mobiles performantes et intuitives et  l'integration de L'IA . Spécialisé en technologies Full-Stack, je maîtrise la création d’interfaces utilisateur réactives (Angular, Flutter) ainsi que la conception d’API REST
- robustes (Spring Boot, FastAPI). Je recherche un stage pour contribuer activement à la construction de plateformes innovantes.
-      </p>
-      
-      <!-- Boutons CTA -->
-      <div class="cta-buttons">
-        <a href="assets/pdf/CV_AAZDAG_ABDELLAH.pdf" download class="cta-button primary">
-          <i class="fas fa-download"></i> Télécharger CV
-        </a>
-        <a href="/contact" class="cta-button secondary">
-          <i class="fas fa-paper-plane"></i> Me contacter
-        </a>
+
+      <!-- RIGHT: photo + orbite tech -->
+      <div class="right-section" aria-hidden="false">
+        <div class="profile-orbit-container" aria-hidden="true">
+          <img
+            src="assets/images/aazdag.png"
+            alt="Photo d'Abdellah Aazdag"
+            class="profile-image"
+          />
+          <div class="orbit" aria-hidden="true">
+            <div class="orbit-path">
+              <div class="tech-icon spring"><i class="fas fa-leaf" aria-hidden="true"></i></div>
+              <div class="tech-icon angular"><i class="fab fa-angular" aria-hidden="true"></i></div>
+              <div class="tech-icon python"><i class="fab fa-python" aria-hidden="true"></i></div>
+            </div>
+            <div class="orbit-path">
+              <div class="tech-icon react"><i class="fab fa-react" aria-hidden="true"></i></div>
+              <div class="tech-icon docker"><i class="fab fa-docker" aria-hidden="true"></i></div>
+              <div class="tech-icon k8s"><i class="fas fa-dharmachakra" aria-hidden="true"></i></div>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
-    
-    <!-- SECTION DROITE : Image profil -->
-    <div class="right-section">
-      <div class="profile-image-container">
-        <img 
-          src="assets/images/aazdag.png" 
-          alt="Abdellah Aazdag - Développeur Full Stack"
-          class="profile-image"
-        />
-        <div class="image-overlay"></div>
-        <div class="tech-circle angular">
-          <i class="fab fa-angular"></i>
-        </div>
-        <div class="tech-circle spring">
-          <i class="fas fa-leaf"></i>
-        </div>
-        <div class="tech-circle docker">
-          <i class="fab fa-docker"></i>
-        </div>
-      </div>
-    </div>
-  </div>
+  </section>
 </div>
