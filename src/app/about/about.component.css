@@ -1,417 +1,203 @@
-:root {
-  --primary-color: #2272ff;
-  --primary-dark: #1a5bd9;
-  --primary-light: rgba(34, 114, 255, 0.1);
-  --dark-bg: #0f0f13;
-  --darker-bg: #0a0a0d;
-  --light-gray: #e0e0e0;
-  --medium-gray: #a0a0a0;
-  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
+/* Import des variables de couleur globales pour la cohérence */
+@import '../../styles.css';
 
+/* Conteneur principal - style identique à la page d'accueil */
 .about-container {
-  background: linear-gradient(135deg,  #0a0a0d 0%, #0f0f13 100%);
+  background: linear-gradient(135deg, var(--bg-color) 0%, #081827 100%);
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 2rem 1rem;
+  justify-content: center;
+  padding: 5rem 2rem;
   position: relative;
   overflow: hidden;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: var(--text-light);
 }
 
-.about-container::before {
-  content: '';
+/* Arrière-plan Aurora - style identique à la page d'accueil */
+.aurora-background {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 30%, rgba(34, 114, 255, 0.15) 0%, transparent 30%),
-    radial-gradient(circle at 80% 70%, rgba(34, 114, 255, 0.15) 0%, transparent 30%);
+  inset: 0;
   z-index: 0;
-  animation: gradientPulse 15s ease infinite alternate;
+  filter: blur(80px);
+  opacity: 0.55;
+  background:
+    radial-gradient(600px 400px at 10% 90%, rgba(0, 224, 255, 0.12), transparent 20%),
+    radial-gradient(700px 500px at 90% 10%, rgba(99, 102, 241, 0.12), transparent 20%);
+  pointer-events: none;
 }
 
-.about-wrapper {
+/* Particules flottantes - style identique à la page d'accueil */
+.floating-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Carte en verre - style principal repris de la page d'accueil */
+.glass-card {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(10, 18, 30, 0.66), rgba(8, 14, 24, 0.6));
+  border: 1px solid rgba(0, 224, 255, 0.08);
+  border-radius: 22px;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5), inset 0 0 28px rgba(0, 224, 255, 0.02);
+  backdrop-filter: blur(16px);
+  padding: 3rem;
+  width: 100%;
   max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
-  background: rgba(15, 15, 19, 0.85);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 3rem;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(34, 114, 255, 0.2),
-    0 0 20px rgba(34, 114, 255, 0.1);
-  animation: fadeInUp 0.8s ease;
-  border: 1px solid rgba(34, 114, 255, 0.3);
+  transition: transform .22s ease, box-shadow .22s ease;
 }
 
-.about-container h2 {
-  color: #2272ff;
-  margin-bottom: 2.5rem;
-  text-align: center;
-  font-size: 2.8rem;
-  position: relative;
-  padding-bottom: 1rem;
-  letter-spacing: 1px;
-  font-weight: 700;
-  text-shadow: 0 0 10px rgba(34, 114, 255, 0.3);
-}
-
-.about-container h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 4px;
-  background: linear-gradient(90deg, transparent 0%, #2272ff 50%, transparent 100%);
-  box-shadow: 0 0 15px #2272ff;
-}
-
-.about-content {
+/* Wrapper pour le contenu flexbox */
+.content-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  gap: 4rem;
-  margin-bottom: 4rem;
   align-items: center;
+  gap: 3rem;
 }
 
-.profile-photo {
-  width: 300px;
-  height: 300px;
-  border-radius: 20px;
-  object-fit: cover;
-  border: 3px solid #2272ff;
-  box-shadow: 
-    0 10px 25px rgba(34, 114, 255, 0.3),
-    0 0 0 8px rgba(34, 114, 255, 0.05);
-  transition: var(--transition);
-  filter: grayscale(20%) contrast(110%) brightness(0.95);
-  position: relative;
-  z-index: 1;
+/* Section de gauche (texte) */
+.left-section {
+  flex: 2; /* Prend plus de place pour le texte */
+  animation: fadeInFromRight 800ms ease-out both;
 }
 
-.profile-photo:hover {
-  transform: scale(1.03);
-  filter: grayscale(0%) contrast(110%) brightness(1);
-  box-shadow: 
-    0 10px 30px rgba(34, 114, 255, 0.5),
-    0 0 0 8px rgba(34, 114, 255, 0.1);
-}
-
-.bio {
+/* Section de droite (image) */
+.right-section {
   flex: 1;
-  min-width: 300px;
-  color:#e0e0e0;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  letter-spacing: 0.3px;
-}
-
-.bio p {
-  margin-bottom: 1.5rem;
-  position: relative;
-}
-
-.bio p:last-child {
-  margin-bottom: 0;
-}
-
-.bio strong {
-  color: #2272ff;
-  font-weight: 600;
-}
-
-.contact-details {
-  background: linear-gradient(135deg, rgba(15, 15, 19, 0.7) 0%, rgba(10, 10, 13, 0.7) 100%);
-  padding: 2.5rem;
-  border-radius: 12px;
-  margin-bottom: 3rem;
-  border-left: 4px solid #2272ff;
-  box-shadow: 
-    0 5px 15px rgba(0, 0, 0, 0.2),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  position: relative;
-  overflow: hidden;
-}
-
-.contact-details::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, transparent 65%, rgba(34, 114, 255, 0.03) 100%);
-  pointer-events: none;
-}
-
-.contact-details h3 {
-  margin-top: 0;
-  color: #2272ff;
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
-  position: relative;
-  letter-spacing: 0.5px;
-  font-weight: 600;
-}
-
-.contact-details h3::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: #2272ff;
-  box-shadow: 0 0 10px #2272ff;
-}
-
-.contact-details p {
-  margin: 1.2rem 0;
-  font-size: 1.1rem;
   display: flex;
+  justify-content: center;
   align-items: center;
+  animation: fadeInFromLeft 800ms ease-out both;
+}
+
+.profile-image {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 224, 255, 0.12);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+  animation: profileFloat 6s ease-in-out infinite;
+}
+
+/* Titre de la section */
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.section-title .highlight {
+  background: linear-gradient(90deg, #fff, var(--primary-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 22px rgba(0, 224, 255, 0.12);
+}
+
+/* Paragraphes de description */
+.about-description {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-medium);
+  margin-bottom: 1.5rem;
+  max-width: 650px;
+}
+
+.about-description strong {
+  color: var(--text-light);
+  font-weight: 600;
+}
+
+/* Conteneur pour les cartes d'information */
+.info-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 1rem;
-  color:#e0e0e0;
+  margin-top: 2rem;
 }
 
-.contact-details i {
-  width: 24px;
-  text-align: center;
-  color: #2272ff;
-  font-size: 1.2rem;
-}
-
-.contact-details a {
-  color: #2272ff;
-  text-decoration: none;
-  transition: var(--transition);
-  position: relative;
-  font-weight: 500;
-}
-
-.contact-details a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: #2272ff;
-  transition: var(--transition);
-}
-
-.contact-details a:hover {
-  color: white;
-}
-
-.contact-details a:hover::after {
-  width: 100%;
-}
-
-.values-section {
-  background: linear-gradient(135deg, rgba(15, 15, 19, 0.7) 0%, rgba(10, 10, 13, 0.7) 100%);
-  padding: 3rem;
+/* Style des cartes d'information */
+.info-card {
+  background: rgba(34, 211, 238, 0.05);
+  border: 1px solid rgba(0, 224, 255, 0.06);
   border-radius: 12px;
-  box-shadow: 
-    0 5px 15px rgba(227, 219, 219, 0.768),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  position: relative;
-  overflow: hidden;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.values-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, rgba(34, 114, 255, 0.03) 0%, transparent 35%);
-  pointer-events: none;
+.info-card:hover {
+  transform: translateY(-5px);
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(34, 211, 238, 0.2);
 }
 
-.values-section h3 {
-  color: #2272ff;
+.card-icon {
   font-size: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  letter-spacing: 0.5px;
-  font-weight: 700;
-  position: relative;
+  color: var(--primary-accent);
+  margin-bottom: 1rem;
 }
 
-.values-section h3::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 3px;
-  background: #2272ff;
-  box-shadow: 0 0 10px #2272ff;
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin: 0 0 0.5rem 0;
 }
 
-.values-section p {
-  color:#e0e0e0;
-  font-size: 1.15rem;
-  line-height: 1.9;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto 1.5rem;
-  letter-spacing: 0.3px;
+.card-text {
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  margin: 0;
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+/* Animations - identiques à la page d'accueil */
+@keyframes fadeInFromRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes gradientPulse {
-  0% { opacity: 0.8; }
-  50% { opacity: 1; }
-  100% { opacity: 0.8; }
+@keyframes fadeInFromLeft {
+  from { opacity: 0; transform: translateX(-24px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
-/* Responsive adjustments */
+@keyframes profileFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* Responsive Design */
 @media (max-width: 992px) {
-  .about-wrapper {
-    padding: 2rem;
+  .content-wrapper {
+    flex-direction: column-reverse; /* Place l'image au-dessus du texte sur mobile */
   }
-  
-  .about-content {
-    flex-direction: column;
+  .left-section, .right-section {
     text-align: center;
-    gap: 2.5rem;
+    align-items: center;
   }
-  
-  .profile-photo {
-    width: 240px;
-    height: 240px;
+  .about-description {
+    max-width: 100%;
   }
-  
-  .contact-details {
-    text-align: left;
-    padding: 2rem;
-  }
-  
-  .contact-details p {
-    justify-content: center;
-  }
-  
-  .values-section {
-    padding: 2rem;
+  .profile-image {
+    max-width: 240px;
+    margin-bottom: 2rem;
   }
 }
 
-@media (max-width: 768px) {
-  .about-container h2 {
-    font-size: 2.2rem;
-  }
-  
-  .bio {
-    font-size: 1rem;
-  }
-  
-  .contact-details h3,
-  .values-section h3 {
-    font-size: 1.5rem;
-  }
-  
-  .contact-details p {
-    font-size: 1rem;
-  }
-  
-  .values-section p {
-    font-size: 1rem;
-  }
-}
-/* Ajouter ces règles à la fin du fichier */
 @media (max-width: 576px) {
   .about-container {
-    padding: 1rem 0.5rem;
+    padding: 4rem 1rem;
   }
-  
-  .about-wrapper {
-    padding: 1.5rem;
-    border-radius: 12px;
-  }
-  
-  .about-container h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .profile-photo {
-    width: 200px;
-    height: 200px;
-    margin: 0 auto;
-  }
-  
-  .bio {
-    min-width: 100%;
-    font-size: 0.95rem;
-    line-height: 1.7;
-  }
-  
-  .contact-details,
-  .values-section {
+  .glass-card {
     padding: 1.5rem;
   }
-  
-  .contact-details p,
-  .values-section p {
-    font-size: 0.95rem;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-  
-  .contact-details i {
-    margin-right: 0.5rem;
-  }
-  
-  .contact-details span,
-  .contact-details a {
-    width: 100%;
-    margin-top: 0.3rem;
-  }
-  
-  .values-section h3 {
-    font-size: 1.5rem;
-  }
-  
-  .about-container h2::after {
-    width: 80px;
-    height: 3px;
-  }
-}
-
-/* Pour les très petits écrans (moins de 400px) */
-@media (max-width: 400px) {
-  .profile-photo {
-    width: 180px;
-    height: 180px;
-  }
-  
-  .about-container h2 {
-    font-size: 1.6rem;
-  }
-  
-  .bio p {
-    text-align: left;
-  }
-  
-  .contact-details p {
-    font-size: 0.9rem;
+  .info-cards {
+    grid-template-columns: 1fr; /* Une seule colonne sur les petits écrans */
   }
 }

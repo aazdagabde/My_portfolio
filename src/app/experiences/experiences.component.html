@@ -1,20 +1,23 @@
-<div class="experiences-container">
-  <div class="resume-wrapper">
-    <h2>Mon Parcours</h2>
-    
-    <h3 class="section-title">
+<div class="experiences-container" role="main" aria-label="Page du parcours et des expériences d'Abdellah Aazdag">
+  <div class="aurora-background" aria-hidden="true"></div>
+  <div class="floating-particles" #particles aria-hidden="true"></div>
+
+  <section class="glass-card" #glassCard>
+    <h1 class="main-title">Mon <span class="highlight">Parcours</span></h1>
+    <p class="subtitle">Mon expérience professionnelle, ma formation et mes engagements associatifs.</p>
+
+    <h2 class="section-title">
       <i class="fas fa-briefcase"></i> Expériences Professionnelles
-    </h3>
+    </h2>
     <div class="timeline">
-      <div class="timeline-item" *ngFor="let experience of experiences; let i = index" 
-           [class.visible]="isVisible[i]">
-        <div class="timeline-date">
-          <i class="fas fa-calendar-alt"></i> {{ experience.period }}
-        </div>
+      <div class="timeline-item" *ngFor="let experience of experiences">
         <div class="timeline-content">
           <h3>{{ experience.position }}</h3>
-          <span class="position">{{ experience.company }}</span>
-          <p>{{ experience.description }}</p>
+          <span class="company">{{ experience.company }}</span>
+          <div class="timeline-date">
+            <i class="fas fa-calendar-alt"></i> {{ experience.period }}
+          </div>
+          <p class="description">{{ experience.description }}</p>
           <div class="tech-badges" *ngIf="experience.technologies.length > 0">
             <span class="tech-badge" *ngFor="let tech of experience.technologies">
               <i [class]="tech.icon"></i> {{ tech.name }}
@@ -24,20 +27,18 @@
       </div>
     </div>
 
-    <h3 class="section-title">
+    <h2 class="section-title">
       <i class="fas fa-graduation-cap"></i> Formation
-    </h3>
+    </h2>
     <div class="timeline">
-      <div class="timeline-item" *ngFor="let education of educations; let i = index" 
-           [class.visible]="isVisible[experiences.length + i]">
-        <div class="timeline-date">
-          <i class="fas fa-calendar-alt"></i> {{ education.period }}
-        </div>
+      <div class="timeline-item" *ngFor="let education of educations">
         <div class="timeline-content">
           <h3>{{ education.degree }}</h3>
-          <span class="position">{{ education.institution }}</span>
-          <p>{{ education.description }}</p>
-          <div class="tech-badges" *ngIf="education.technologies.length > 0">
+          <span class="company">{{ education.school }}</span>
+          <div class="timeline-date">
+            <i class="fas fa-calendar-alt"></i> {{ education.period }}
+          </div>
+           <div class="tech-badges" *ngIf="education.technologies.length > 0">
             <span class="tech-badge" *ngFor="let tech of education.technologies">
               <i [class]="tech.icon"></i> {{ tech.name }}
             </span>
@@ -46,19 +47,18 @@
       </div>
     </div>
     
-    <h3 class="section-title">
+    <h2 class="section-title">
       <i class="fas fa-users"></i> Engagement Associatif
-    </h3>
+    </h2>
     <div class="timeline">
-      <div class="timeline-item" *ngFor="let extra of extracurricular; let i = index" 
-           [class.visible]="isVisible[experiences.length + educations.length + i]">
-        <div class="timeline-date">
-          <i class="fas fa-calendar-alt"></i> {{ extra.period }}
-        </div>
+      <div class="timeline-item" *ngFor="let extra of extracurricular">
         <div class="timeline-content">
           <h3>{{ extra.position }}</h3>
-          <span class="position">{{ extra.company }}</span>
-          <p>{{ extra.description }}</p>
+          <span class="company">{{ extra.company }}</span>
+           <div class="timeline-date">
+            <i class="fas fa-calendar-alt"></i> {{ extra.period }}
+          </div>
+          <p class="description">{{ extra.description }}</p>
           <div class="tech-badges" *ngIf="extra.technologies.length > 0">
             <span class="tech-badge" *ngFor="let tech of extra.technologies">
               <i [class]="tech.icon"></i> {{ tech.name }}
@@ -69,11 +69,9 @@
     </div>
 
     <div class="download-section">
-      <p>Consultez mon CV complet pour plus de détails sur mon parcours :</p>
-      <a href="assets/pdf/CV_AAZDAG_ABDELLAH_VF_FR.pdf" download class="download-btn">
-        <i class="fas fa-file-download"></i>
-        <span>Télécharger mon CV</span>
+      <a href="assets/pdf/CV_AAZDAG_ABDELLAH_VF_FR.pdf" download class="cta-button primary" aria-label="Télécharger mon CV">
+        <i class="fas fa-download" aria-hidden="true"></i> Télécharger mon CV complet
       </a>
     </div>
-  </div>
+  </section>
 </div>
