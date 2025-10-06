@@ -20,26 +20,23 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private isReducedMotion = false;
   private typedNameInstance: any = null;
   private typedSubInstance: any = null;
+  private animationFrameId: number | null = null;
 
   constructor(private renderer: Renderer2) {
     this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   ngAfterViewInit(): void {
-    // Si reduced-motion => texte statique (pas d'animations)
     if (this.isReducedMotion) {
       this.typedName.nativeElement.textContent = 'Abdellah AAZDAG';
       this.typedSub.nativeElement.textContent = 'Architecte Logiciel • Ingénieur IA • Cloud & DevOps';
     } else {
-      // Titre (statique mais stylé) : on garde l'animation seulement pour le sous-titre si tu préfères,
-      // ici on peut aussi taper le nom si tu veux ; on le laisse visible (déjà dans H1).
-      // Sous-titres animés — on cible le SPAN (#typedSub) pour que le curseur colle au texte.
       this.typedSubInstance = new Typed(this.typedSub.nativeElement, {
         strings: [
           'Architecte Logiciel Full-Stack',
           'Ingénieur en Solutions IA',
-          'Expert Cloud & DevOps',
-          'Développeur Front (Angular & React)'
+          'Expert Cloud &amp; DevOps',
+          'Développeur Front (Angular &amp; React)'
         ],
         typeSpeed: 45,
         backSpeed: 28,
@@ -53,7 +50,6 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       });
     }
 
-    // particules via ViewChild + Renderer2 (plus propre)
     this.createParticles();
   }
 
@@ -64,11 +60,23 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     if (this.typedSubInstance && typeof this.typedSubInstance.destroy === 'function') {
       this.typedSubInstance.destroy();
     }
+    if (this.animationFrameId) {
+        cancelAnimationFrame(this.animationFrameId);
+    }
   }
 
-  // Effet tilt (désactivé sur appareils tactiles ou reduced-motion)
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+    }
+
+    this.animationFrameId = requestAnimationFrame(() => {
+      this.updateCardTilt(event);
+    });
+  }
+
+  private updateCardTilt(event: MouseEvent): void {
     if (!this.glassCard || this.isReducedMotion) return;
     if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
 
@@ -90,6 +98,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('document:mouseleave')
   onMouseLeave() {
+    if (this.animationFrameId) {
+        cancelAnimationFrame(this.animationFrameId);
+    }
     if (!this.glassCard) return;
     this.renderer.setStyle(this.glassCard.nativeElement, 'transform', `perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)`);
     this.renderer.setStyle(this.glassCard.nativeElement, 'boxShadow', `0 12px 48px rgba(0,0,0,0.45), inset 0 0 28px rgba(0,224,255,0.02)`);
@@ -100,7 +111,6 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     const container = this.particles?.nativeElement;
     if (!container) return;
 
-    // enlever d'éventuelles particules existantes (hot-reload)
     while (container.firstChild) container.removeChild(container.firstChild);
 
     for (let i = 0; i < 10; i++) {

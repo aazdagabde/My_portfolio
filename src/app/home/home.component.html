@@ -1,16 +1,12 @@
-<!-- home.component.html -->
 <div class="home-container" role="main" aria-label="Page d'accueil - Abdellah Aazdag">
-  <!-- arrière-plan / particules (readonly pour a11y) -->
   <div class="aurora-background" aria-hidden="true"></div>
   <div class="floating-particles" #particles aria-hidden="true"></div>
 
   <section class="glass-card" #glassCard>
     <div class="content-wrapper">
-      <!-- LEFT: texte / présentation -->
       <div class="left-section">
         <h1 class="typed-name" #typedName aria-live="polite">Abdellah AAZDAG</h1>
 
-        <!-- on cible l'élément SPAN pour typed.js afin que le curseur reste collé -->
         <p class="typed-sub" aria-live="polite">
           <span class="typed-text" #typedSub></span>
         </p>
@@ -40,13 +36,15 @@
         </div>
       </div>
 
-      <!-- RIGHT: photo + orbite tech -->
       <div class="right-section" aria-hidden="false">
         <div class="profile-orbit-container" aria-hidden="true">
           <img
             src="assets/images/aazdag.png"
             alt="Photo d'Abdellah Aazdag"
             class="profile-image"
+            loading="lazy"
+            width="420"
+            height="420"
           />
           <div class="orbit" aria-hidden="true">
             <div class="orbit-path">
