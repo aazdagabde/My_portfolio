@@ -1,7 +1,7 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule, NgForm, NgModel } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { 
   faSpinner, faCheckCircle, faTimes, faUser, faEnvelope, faTag, faCommentAlt, 
@@ -34,8 +34,10 @@ export class ContactComponent implements AfterViewInit {
   showConfirmationModal = false;
   fieldErrors: { [key: string]: string } = {};
 
-  constructor(private http: HttpClient, private renderer: Renderer2) {
-    this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  constructor(private http: HttpClient, private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
+      this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
   }
 
   ngAfterViewInit(): void {

@@ -19,11 +19,13 @@ export class AppComponent implements OnInit {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof localStorage !== 'undefined') {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'light') {
         this.isLightMode = true;
-        document.body.classList.add('light-mode');
+        if (typeof document !== 'undefined') {
+          document.body.classList.add('light-mode');
+        }
       }
     }
   }
@@ -31,7 +33,7 @@ export class AppComponent implements OnInit {
   // Détecte l'événement de scroll sur la fenêtre
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
       // Si le scroll vertical est supérieur à 10px, on passe la variable à true
       this.isHeaderScrolled = window.scrollY > 10;
     }
@@ -45,7 +47,7 @@ export class AppComponent implements OnInit {
   // Fonction pour basculer entre les thèmes
   toggleTheme(): void {
     this.isLightMode = !this.isLightMode;
-    if (isPlatformBrowser(this.platformId)) {
+    if (isPlatformBrowser(this.platformId) && typeof document !== 'undefined' && typeof localStorage !== 'undefined') {
       if (this.isLightMode) {
         document.body.classList.add('light-mode');
         localStorage.setItem('theme', 'light');

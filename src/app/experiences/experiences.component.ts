@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, Renderer2, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, AfterViewInit, ElementRef, ViewChild, Renderer2, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCalendarAlt, faFileDownload, faBriefcase, faGraduationCap, faUsers, faTasks, faComments, faProjectDiagram } from '@fortawesome/free-solid-svg-icons';
 
@@ -21,8 +21,10 @@ export class ExperiencesComponent implements AfterViewInit, OnInit {
   faGraduationCap = faGraduationCap;
   faUsers = faUsers;
 
-  constructor(private renderer: Renderer2) {
-    this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  constructor(private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
+      this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
   }
 
   ngOnInit(): void {

@@ -1,5 +1,5 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
-import { CommonModule } from '@angular/common'; // CommonModule est souvent nécessaire
+import { Component, AfterViewInit, ElementRef, ViewChild, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common'; // CommonModule est souvent nécessaire
 
 @Component({
   selector: 'app-about',
@@ -14,9 +14,11 @@ export class AboutComponent implements AfterViewInit {
   
   private isReducedMotion = false;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: Object) {
     // Détecte si l'utilisateur préfère des animations réduites pour l'accessibilité
-    this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
+      this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
   }
 
   ngAfterViewInit(): void {

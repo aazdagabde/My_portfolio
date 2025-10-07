@@ -1,7 +1,7 @@
 // home.component.ts
-import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, Renderer2, HostListener } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, ElementRef, ViewChild, Renderer2, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import Typed from 'typed.js';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -22,11 +22,20 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   private typedSubInstance: any = null;
   private animationFrameId: number | null = null;
 
-  constructor(private renderer: Renderer2) {
-    this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  constructor(private renderer: Renderer2, @Inject(PLATFORM_ID) private platformId: Object) {
+    if (isPlatformBrowser(this.platformId) && typeof window !== 'undefined') {
+      this.isReducedMotion = !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
   }
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      // Set static content for SSR
+      this.typedName.nativeElement.textContent = 'Abdellah AAZDAG';
+      this.typedSub.nativeElement.textContent = 'Architecte Logiciel • Ingénieur IA • Cloud & DevOps';
+      return;
+    }
+
     if (this.isReducedMotion) {
       this.typedName.nativeElement.textContent = 'Abdellah AAZDAG';
       this.typedSub.nativeElement.textContent = 'Architecte Logiciel • Ingénieur IA • Cloud & DevOps';
@@ -54,19 +63,22 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.typedNameInstance && typeof this.typedNameInstance.destroy === 'function') {
-      this.typedNameInstance.destroy();
-    }
-    if (this.typedSubInstance && typeof this.typedSubInstance.destroy === 'function') {
-      this.typedSubInstance.destroy();
-    }
-    if (this.animationFrameId) {
-        cancelAnimationFrame(this.animationFrameId);
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.typedNameInstance && typeof this.typedNameInstance.destroy === 'function') {
+        this.typedNameInstance.destroy();
+      }
+      if (this.typedSubInstance && typeof this.typedSubInstance.destroy === 'function') {
+        this.typedSubInstance.destroy();
+      }
+      if (this.animationFrameId) {
+          cancelAnimationFrame(this.animationFrameId);
+      }
     }
   }
 
   @HostListener('document:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
+    if (!isPlatformBrowser(this.platformId)) return;
     if (this.animationFrameId) {
       cancelAnimationFrame(this.animationFrameId);
     }
@@ -78,6 +90,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   private updateCardTilt(event: MouseEvent): void {
     if (!this.glassCard || this.isReducedMotion) return;
+    if (!isPlatformBrowser(this.platformId) || typeof window === 'undefined') return;
     if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return;
 
     const rect = this.glassCard.nativeElement.getBoundingClientRect();
@@ -98,6 +111,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('document:mouseleave')
   onMouseLeave() {
+    if (!isPlatformBrowser(this.platformId)) return;
     if (this.animationFrameId) {
         cancelAnimationFrame(this.animationFrameId);
     }
