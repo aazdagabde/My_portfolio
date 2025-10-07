@@ -15,12 +15,18 @@
         <li><a routerLink="/projects" routerLinkActive="active">Projets</a></li>
         <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
       </ul>
+      
+      <div class="nav-controls">
+        <button class="theme-toggle" (click)="toggleTheme()" [attr.aria-label]="'Passer en mode ' + (isLightMode ? 'sombre' : 'clair')">
+          <i class="fas" [ngClass]="isLightMode ? 'fa-moon' : 'fa-sun'"></i>
+        </button>
 
-      <button class="hamburger" (click)="toggleNav()" [class.active]="isNavOpen" aria-label="Menu">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
+        <button class="hamburger" (click)="toggleNav()" [class.active]="isNavOpen" aria-label="Menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
     </nav>
   </header>
 
