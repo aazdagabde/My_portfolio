@@ -1,6 +1,6 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { CursorHaloDirective } from './directives/cursor-halo.directive';
 
 @Component({
@@ -10,20 +10,49 @@ import { CursorHaloDirective } from './directives/cursor-halo.directive';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'portfolio';
   isNavOpen = false;
   isHeaderScrolled = false;
+  isLightMode = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        this.isLightMode = true;
+        document.body.classList.add('light-mode');
+      }
+    }
+  }
 
   // Détecte l'événement de scroll sur la fenêtre
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    // Si le scroll vertical est supérieur à 10px, on passe la variable à true
-    this.isHeaderScrolled = window.scrollY > 10;
+    if (isPlatformBrowser(this.platformId)) {
+      // Si le scroll vertical est supérieur à 10px, on passe la variable à true
+      this.isHeaderScrolled = window.scrollY > 10;
+    }
   }
 
   // Fonction pour ouvrir/fermer le menu mobile
   toggleNav(): void {
     this.isNavOpen = !this.isNavOpen;
+  }
+
+  // Fonction pour basculer entre les thèmes
+  toggleTheme(): void {
+    this.isLightMode = !this.isLightMode;
+    if (isPlatformBrowser(this.platformId)) {
+      if (this.isLightMode) {
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
   }
 }
