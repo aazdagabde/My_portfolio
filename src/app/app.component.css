@@ -16,13 +16,13 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   background-color: rgba(10, 18, 30, 0.5); /* Transparence initiale */
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 224, 255, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Classe ajoutée au scroll */
 .header.scrolled {
-  background-color: rgba(10, 18, 30, 0.75);
+  background-color: rgba(10, 18, 30, 0.85);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
@@ -93,24 +93,31 @@
   width: 100%;
 }
 
+/* --- MODIFICATIONS CI-DESSOUS --- */
+
 /* Hamburger pour menu mobile */
 .hamburger {
   display: none;
   cursor: pointer;
-  background: none;
+  background-color: transparent; /* Assure qu'il n'y a pas de fond */
   border: none;
   padding: 0.5rem;
   z-index: 1010;
 }
 
 .hamburger-line {
+  display: block; /* Force l'élément à se comporter comme un bloc */
   width: 28px;
   height: 3px;
-  background-color: var(--text-light);
+  /* Utilise la couleur la plus vive pour un contraste maximal */
+  background-color: var(--primary-accent);
   margin: 5px 0;
   border-radius: 2px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+/* --- FIN DES MODIFICATIONS --- */
+
 
 .hamburger.active .hamburger-line:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
@@ -132,8 +139,9 @@
   width: 70%;
   max-width: 300px;
   height: 100vh;
-  background-color: rgba(8, 14, 24, 0.85);
+  background-color: rgba(8, 14, 24, 0.9);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-left: 1px solid rgba(0, 224, 255, 0.15);
   display: flex;
   flex-direction: column;
@@ -247,24 +255,27 @@
 /* Responsive */
 @media (max-width: 768px) {
   .header {
-    padding: 1rem;
+    padding: 1rem 1.5rem;
   }
+
   .nav-links {
     display: none;
   }
+
   .hamburger {
     display: block;
   }
+
   .footer-content {
     grid-template-columns: 1fr;
-  }
-  .footer-section {
     text-align: center;
   }
+
   .footer-section h3::after {
     left: 50%;
     transform: translateX(-50%);
   }
+
   .social-links {
     justify-content: center;
   }
