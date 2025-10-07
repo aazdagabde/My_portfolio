@@ -1,68 +1,59 @@
-// project-carousel.component.ts
-import { Component, Input, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Project } from '../project.model';
+import { Component, Input, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-project-carousel',
-  standalone: true,
   templateUrl: './project-carousel.component.html',
-  styleUrls: ['./project-carousel.component.css'],
-  animations: [
-    trigger('slideAnimation', [
-      transition(':increment', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('500ms ease-out', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition(':decrement', [
-        style({ transform: 'translateX(100%)' }),
-        animate('500ms ease-out', style({ transform: 'translateX(0%)' }))
-      ])
-    ])
-  ]
+  styleUrls: ['./project-carousel.component.css']
 })
-export class ProjectCarouselComponent implements OnInit, OnDestroy {
-  @Input() projects: Project[] = [];
+export class ProjectCarouselComponent {
+  @Input() screens: string[] = [];
   currentIndex = 0;
-  private intervalId: any;
-  private isBrowser: boolean;
+  zoomed = false;
+  showControls = true;
+  private controlsTimeout: any;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
-  }
-
-  ngOnInit(): void {
-    if (this.isBrowser) {
-      this.startAutoSlide();
+  prev(): void {
+    this.resetState();
+    if (this.screens.length > 0) {
+      this.currentIndex = (this.currentIndex - 1 + this.screens.length) % this.screens.length;
     }
   }
 
-  ngOnDestroy(): void {
-    if (this.isBrowser) {
-      this.stopAutoSlide();
+  next(): void {
+    this.resetState();
+    if (this.screens.length > 0) {
+      this.currentIndex = (this.currentIndex + 1) % this.screens.length;
     }
   }
 
-  startAutoSlide(): void {
-    if (this.isBrowser) {
-      this.intervalId = setInterval(() => {
-        this.nextSlide();
-      }, 3000);
+  toggleZoom(): void {
+    this.zoomed = !this.zoomed;
+    this.resetControlsTimer();
+  }
+
+  showControlsTemporarily(): void {
+    this.showControls = true;
+    this.resetControlsTimer();
+  }
+
+  private resetState(): void {
+    this.zoomed = false;
+    this.resetControlsTimer();
+  }
+
+   resetControlsTimer(): void {
+    clearTimeout(this.controlsTimeout);
+    this.controlsTimeout = setTimeout(() => {
+      this.showControls = false;
+    }, 3000);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowLeft': this.prev(); break;
+      case 'ArrowRight': this.next(); break;
+      case 'z': case 'Z': this.toggleZoom(); break;
     }
-  }
-
-  stopAutoSlide(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-  }
-
-  nextSlide(): void {
-    this.currentIndex = (this.currentIndex + 1) % this.projects.length;
-  }
-
-  prevSlide(): void {
-    this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
   }
 }
